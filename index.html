@@ -584,6 +584,50 @@
       }
     }
 
+
+    @media (max-width: 1024px) {
+      .topbar {
+        padding: 0.45rem 0.75rem !important;
+        gap: 0.35rem !important;
+      }
+      .topbar-title h1 {
+        font-size: 0.95rem !important;
+      }
+      .badge-sub {
+        font-size: 0.7rem !important;
+        padding: 0.1rem 0.45rem !important;
+      }
+      #btn-view-cards, #btn-view-table, button[onclick*="qr-dialog"] {
+        display: none !important;
+      }
+      .topbar-actions .btn {
+        padding: 0.28rem 0.55rem !important;
+        font-size: 0.74rem !important;
+      }
+      .control-bar {
+        padding: 0.4rem 0.65rem !important;
+        gap: 0.35rem !important;
+      }
+      .layer-switches strong {
+        display: none;
+      }
+      #map-panel {
+        height: 54dvh !important;
+      }
+      .map-legend {
+        bottom: 8px !important;
+        left: 8px !important;
+        padding: 0.3rem 0.55rem !important;
+        max-width: 195px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+      }
+      #log-banner {
+        padding: 0.4rem 0.65rem !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.6rem !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -608,11 +652,11 @@
     <div class="layer-switches">
       <strong style="font-size:0.84rem; color:#1e293b;">🗺️ 地圖圖層一鍵切換：</strong>
       <label class="layer-switch-label" title="疊加經濟部地礦中心 2026 最新土壤液化潛勢圖（紅/黃/綠區）">
-        <input id="toggle-liq" type="checkbox" switch checked onchange="updateMapLayers()" />
+        <input id="toggle-liq" type="checkbox" switch onchange="updateMapLayers()" />
         🌋 土壤液化潛勢圖層 (CGS 2026)
       </label>
       <label class="layer-switch-label" title="疊加水利署／NCDR 暴雨淹水潛勢範圍與低窪警戒區">
-        <input id="toggle-flood" type="checkbox" switch checked onchange="updateMapLayers()" />
+        <input id="toggle-flood" type="checkbox" switch onchange="updateMapLayers()" />
         🌊 淹水潛勢圖層 (NCDR/水利署)
       </label>
       <label class="layer-switch-label" title="顯示內政部台南登記宮廟位置與 150m 警戒圈">
@@ -641,14 +685,16 @@
   <main class="main-grid">
     <div id="map-panel">
       <div id="map"></div>
-      <div class="map-legend">
-        <h4>📌 圖層與地質判讀圖例</h4>
-        <div class="legend-row"><span class="dot" style="background:#10b981;"></span> <strong>綠區（低液化／無淹水）</strong>：新化民生路、麻豆客子寮、九份子</div>
-        <div class="legend-row"><span class="dot" style="background:#f59e0b;"></span> <strong>黃區（中度液化潛勢）</strong>：善化、新市、北區鄭子寮、永康大橋</div>
-        <div class="legend-row"><span class="dot" style="background:#ef4444;"></span> <strong>紅區（高液化／直接淹水）</strong>：三民街90巷、仁義四街、安定油車</div>
-        <div class="legend-row"><span class="dot" style="background:#3b82f6; border:2px dashed #1d4ed8;"></span> <strong>藍色斜線圈</strong>：NCDR 暴雨淹水潛勢警戒帶</div>
-        <div class="legend-row"><span class="dot" style="background:#dc2626;"></span> <strong>紅色小點＋紅圈</strong>：登記宮廟與 150m 嫌惡警戒範圍</div>
-      </div>
+      <details class="map-legend">
+        <summary style="cursor:pointer; font-weight:700; font-size:0.78rem; color:#0f172a; list-style:none;">ℹ️ 圖例說明 (點此展開)</summary>
+        <div style="margin-top:0.4rem;">
+          <div class="legend-row"><span class="dot" style="background:#059669;"></span> 綠標：⭐五星首選推薦</div>
+          <div class="legend-row"><span class="dot" style="background:#2563eb;"></span> 藍標：✅強烈推薦物件</div>
+          <div class="legend-row"><span class="dot" style="background:#10b981;"></span> 綠圈：低液化(綠區)／無淹水</div>
+          <div class="legend-row"><span class="dot" style="background:#f59e0b;"></span> 黃圈：中度土壤液化(黃區)</div>
+          <div class="legend-row"><span class="dot" style="background:#ef4444;"></span> 紅圈：高液化(紅區)／淹水／宮廟</div>
+        </div>
+      </details>
     </div>
 
     <div class="board-column">
@@ -767,7 +813,7 @@
         const se = this._map.unproject([(coords.x + 1) * 256, (coords.y + 1) * 256], coords.z);
         const bbox = `${nw.lng},${se.lat},${se.lng},${nw.lat}`;
         tile.src = `https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer/export?bbox=${bbox}&bboxSR=4326&imageSR=3857&size=256,256&format=png32&transparent=true&f=image`;
-        tile.style.opacity = '0.48';
+        tile.style.opacity = '0.32';
         tile.alt = '';
         return tile;
       }
@@ -785,9 +831,9 @@
     // Add STSP (南科台積電18廠/管理局) Reference Marker
     const stspIcon = L.divIcon({
       className: '',
-      html: `<div class="custom-pin" style="background:#0f172a; border-color:#38bdf8; font-size:12px; padding:3px 8px;">🏭 南科核心(台積電)</div>`,
-      iconSize: [120, 26],
-      iconAnchor: [60, 13]
+      html: `<div class="custom-pin" style="background:#0f172a; border-color:#38bdf8; font-size:11px; padding:2px 6px;">🏭南科</div>`,
+      iconSize: [54, 22],
+      iconAnchor: [27, 11]
     });
     L.marker([23.1015, 120.2745], { icon: stspIcon })
       .bindPopup('<strong>🏭 南部科學園區（台積電18廠／南科管理局）</strong><br>以此為中心：<br>• 善化／新市／安定：約 5～12 分鐘<br>• 新化／永康／安南／麻豆：約 15～20 分鐘')
@@ -951,9 +997,9 @@
         const pinColor = getPinColor(p.rank);
         const icon = L.divIcon({
           className: '',
-          html: `<div class="custom-pin" style="background:${pinColor};">${p.id}｜${p.price}萬</div>`,
-          iconSize: [88, 24],
-          iconAnchor: [44, 12]
+          html: `<div class="custom-pin" style="background:${pinColor}; width:28px; height:28px; padding:0; border-radius:50%; font-size:11px;">${p.id}</div>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
         });
         const m = L.marker([p.lat, p.lng], { icon: icon });
         m.bindPopup(`
@@ -1229,6 +1275,7 @@
         }
       } catch (e) {}
       renderAll();
+      updateMapLayers();
       fitAllMarkers();
     })();
   </script>
