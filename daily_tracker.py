@@ -312,6 +312,27 @@ def run_daily_check(scan_new=True):
 
     sync_to_google_sheet(data_bundle)
 
+    # 同步嵌入最新資料至 index.html 並自動推送到手機雲端網頁 (GitHub Pages)
+    html_path = os.path.join(BASE_DIR, "index.html")
+    if os.path.exists(html_path):
+        with open(html_path, "r", encoding="utf-8") as hf:
+            html_txt = hf.read()
+        s_mk = "window.__INITIAL_DATA__ = "
+        e_mk = ";\n    let appData = window.__INITIAL_DATA__;"
+        s_i = html_txt.find(s_mk)
+        e_i = html_txt.find(e_mk)
+        if s_i != -1 and e_i != -1:
+            html_txt = html_txt[:s_i + len(s_mk)] + json.dumps(data_bundle, ensure_ascii=False) + html_txt[e_i:]
+            with open(html_path, "w", encoding="utf-8") as hf:
+                hf.write(html_txt)
+    try:
+        subprocess.run(["git", "-C", BASE_DIR, "add", "index.html", "properties.json", "daily_check_log.json"], capture_output=True)
+        subprocess.run(["git", "-C", BASE_DIR, "-c", "user.name=Antigravity", "-c", "user.email=reallychien-ops@users.noreply.github.com", "commit", "-m", f"Daily check update {now_str}"], capture_output=True)
+        subprocess.run(["git", "-C", BASE_DIR, "push", "origin", "main"], capture_output=True)
+    except Exception:
+        pass
+
+
     log_entry = {
         "timestamp": now_str,
         "checked_count": checked_count,
