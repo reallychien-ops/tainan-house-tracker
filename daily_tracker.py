@@ -1,155 +1,190 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-台南購屋每日自動巡檢與新物件探索腳本 (daily_tracker.py)
-功能：
-1. 檢查 properties.json 中所有「追蹤中 (tracked=True)」物件在永慶房仲網 / 樂屋網的最新價格與上下架狀態（降價、漲價、持平、已下架）。
-2. 自動掃描永慶房仲網（市區：北區/安南/永康；原台南縣：新化/善化/新市/安定/麻豆/仁德）是否有新上架且符合條件之車庫透天（1,200~1,920萬、屋齡0~26年）。
-3. 若發現新上架物件，自動呼叫官方 GIS API（NCDR 淹水潛勢、地礦中心 2026 土壤液化、內政部寺廟座標庫、NLSC 地籍段別）篩選（排除200m內有大廟或直接位於淹水區者）。
-4. 將最新價格變化、上下架狀態與使用者在網頁版刪除（停止追蹤）的狀態，同步回寫至同一份 Google 試算表（1_精選推薦物件總表）。
+台南購屋每日巡檢 (daily_tracker.py) — 2026-11-13 由 Claude 接手重寫
+1. 所有還沒下架的物件（永慶＋樂屋網）查價格與上下架；只有網站明確回「已成交/關閉/404」才判下架
+2. 永慶 9 個行政區「透天厝・1,200～1,920 萬・屋齡 26 年內」新上架掃描，過宮廟 200m 與液化檢核後加入
+3. 每間物件記 added_at／price_history／delisted_at；附近 500m 寶可夢道館（twpkinfo）
+4. 回寫 Google 試算表、properties.json、git push（GitHub Pages 網頁直接讀 properties.json）
+錯誤一律寫進 daily_check_log.json 的 errors，不再吞掉。
 """
 
 import os
 import re
-import csv
 import json
 import math
-import time
+import gzip
 import datetime
 import subprocess
 import urllib.request
 import urllib.parse
+from http.cookiejar import CookieJar
 
-BASE_DIR = "/Users/chien/Antigravity/tainan_house_tracker"
+from curl_cffi import requests as cffi
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROP_FILE = os.path.join(BASE_DIR, "properties.json")
 LOG_FILE = os.path.join(BASE_DIR, "daily_check_log.json")
-TEMPLE_TSV = "/tmp/temple.tsv"
 SPREADSHEET_ID = "1R3vS8mfq9VH-YCfOArEKBaqKMST2HmpqD9MVI66TsW0"
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+HEADERS = {"User-Agent": UA}
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-}
+SCAN_DISTRICTS = ["北區", "安南區", "永康區", "新化區", "善化區", "新市區", "安定區", "麻豆區", "仁德區"]
+SCAN_FILTER = "透天厝_type/1200-1920_price/0-26_age"
+GYM_RADIUS_M = 500
+NAME_MUST = re.compile(r"車墅|車庫|雙車|車位")
+NAME_SKIP = re.compile(r"收租|投報|投資|學宿|店面|住店|透店|農舍|小木屋|渡假|度假")
+
+errors = []
 
 
 def haversine(lat1, lon1, lat2, lon2):
     R = 6371000
     phi1, phi2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dlambda = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
+    a = math.sin(math.radians(lat2 - lat1) / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(math.radians(lon2 - lon1) / 2) ** 2
     return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
-def check_yungching_listing(url):
-    """檢查永慶房仲網單一物件價格與上下架狀態"""
+def flatten(html):
+    t = re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.S)
+    t = re.sub(r"<[^>]+>", " | ", t)
+    return re.sub(r"(\s*\|\s*)+", " | ", t)
+
+
+def get(url, timeout=15):
+    return urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=timeout).read().decode("utf-8", "ignore")
+
+
+def check_yungching(url):
     try:
-        req = urllib.request.Request(url, headers=HEADERS)
-        resp = urllib.request.urlopen(req, timeout=10)
-        final_url = resp.geturl()
-        html = resp.read().decode("utf-8", "ignore")
-        if "/list" in final_url or "找不到" in html or "已下架" in html or "物件不存在" in html:
-            return {"active": False, "price": None, "reason": "頁面已下架或轉址"}
-        text = re.sub(r"<script.*?</script>", "", html, flags=re.S)
-        text = re.sub(r"<style.*?</style>", "", text, flags=re.S)
-        text = re.sub(r"<[^>]+>", " | ", text)
-        text = re.sub(r"(\s*\|\s*)+", " | ", text)
-        p_m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價([\d\.]+)萬/坪", text)
-        if p_m:
-            price = float(p_m.group(1).replace(",", ""))
-            uprice = float(p_m.group(2))
-            return {"active": True, "price": price, "unit_price": uprice}
-        return {"active": True, "price": None, "reason": "無法解析價格"}
+        resp = urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=15)
+        final_url, html = resp.geturl(), resp.read().decode("utf-8", "ignore")
     except urllib.error.HTTPError as e:
         if e.code in (404, 410):
-            return {"active": False, "price": None, "reason": f"HTTP {e.code} 已下架"}
-        return {"active": True, "price": None, "reason": f"HTTP {e.code}"}
-    except Exception as e:
-        return {"active": True, "price": None, "reason": str(e)}
+            return {"active": False}
+        raise
+    if "/house/" not in final_url or "物件不存在" in html or "已下架" in flatten(html)[:3000]:
+        return {"active": False}
+    m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價([\d\.]+)萬/坪", flatten(html))
+    if not m:
+        raise RuntimeError("永慶頁面讀不到價格")
+    return {"active": True, "price": float(m.group(1).replace(",", "")), "unit_price": float(m.group(2))}
 
 
-def discover_new_yungching_candidates(existing_urls, temples):
-    """掃描永慶房仲網是否有新上架且通過 GIS 檢核的車庫透天"""
-    search_urls = [
-        "https://buy.yungching.com.tw/list/%E5%8F%B0%E5%8D%97%E5%B8%82-%E6%96%B0%E5%8C%96%E5%8D%80,%E5%8F%B0%E5%8D%97%E5%B8%82-%E5%96%84%E5%8C%96%E5%8D%80,%E5%8F%B0%E5%8D%97%E5%B8%82-%E6%96%B0%E5%B8%82%E5%8D%80,%E5%8F%B0%E5%8D%97%E5%B8%82-%E5%AE%89%E5%AE%9A%E5%8D%80_c/1250-1880_price/0-25_age/45-_area",
-        "https://buy.yungching.com.tw/list/%E5%8F%B0%E5%8D%97%E5%B8%82-%E5%8C%97%E5%8D%80,%E5%8F%B0%E5%8D%97%E5%B8%82-%E5%AE%89%E5%8D%97%E5%8D%80,%E5%8F%B0%E5%8D%97%E5%B8%82-%E6%B0%B8%E5%BA%B7%E5%8D%80_c/1350-1880_price/0-26_age/48-_area"
-    ]
-    new_found = []
-    for s_url in search_urls:
-        try:
-            html = urllib.request.urlopen(urllib.request.Request(s_url, headers=HEADERS), timeout=10).read().decode("utf-8", "ignore")
-            matches = re.findall(r'href="(https://buy\.yungching\.com\.tw/house/\d+)"[^>]*title="([^"]+)"', html)
-            for url, title in matches:
-                if url in existing_urls:
-                    continue
-                if not any(k in title for k in ["車墅", "車庫", "雙車"]):
-                    continue
-                existing_urls.add(url)
-                # Inspect detail page
-                h = urllib.request.urlopen(urllib.request.Request(url, headers=HEADERS), timeout=10).read().decode("utf-8", "ignore")
-                text = re.sub(r"<script.*?</script>", "", h, flags=re.S)
-                text = re.sub(r"<style.*?</style>", "", text, flags=re.S)
-                text = re.sub(r"<[^>]+>", " | ", text)
-                text = re.sub(r"(\s*\|\s*)+", " | ", text)
-                p_m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價([\d\.]+)萬/坪\s*\|\s*([^|]+)\s*\|\s*屋齡([\d\.]+)\s*年\s*\|\s*([^|]+)\s*\|\s*建物([\d\.]+)坪", text)
-                if not p_m:
-                    continue
-                htype = p_m.group(3).strip()
-                if "透天" not in htype and "別墅" not in htype:
-                    continue
-                price = float(p_m.group(1).replace(",", ""))
-                uprice = float(p_m.group(2))
-                age = float(p_m.group(4))
-                floors = p_m.group(5).strip()
-                b_ping = float(p_m.group(6))
-                l_m = re.search(r"土地坪數\s*\|\s*([\d\.]+)坪", text)
-                l_ping = float(l_m.group(1)) if l_m else 0.0
-                layout_m = re.search(r"建物格局\s*\|\s*([^|]+)", text)
-                layout = layout_m.group(1).strip() if layout_m else ""
-                addr_m = re.search(r"\|\s*([^|]*台南市[^|]+?)\s*\|", text)
-                addr = addr_m.group(1).replace("住宅", "").strip() if addr_m else "台南市"
+def check_rakuya(url):
+    r = cffi.get(url, impersonate="chrome", timeout=20)
+    if r.status_code == 404 or "已成交或關閉" in r.text:
+        return {"active": False}
+    if r.status_code != 200:
+        raise RuntimeError(f"樂屋網 HTTP {r.status_code}")
+    m = re.search(r'"price"\s*:\s*"?(\d{6,})', r.text)
+    if not m:
+        raise RuntimeError("樂屋網頁面讀不到價格")
+    return {"active": True, "price": round(int(m.group(1)) / 10000, 1)}
 
-                # Geocode & GIS Check
-                g_url = f"https://dmap.ncdr.nat.gov.tw/api/district2xyInfo?address={urllib.parse.quote(addr + '10號')}"
-                g_res = json.loads(urllib.request.urlopen(urllib.request.Request(g_url, headers=HEADERS), timeout=8).read().decode("utf-8"))
-                lng = float([x["Value"] for x in g_res if x["Key"] == "x"][0])
-                lat = float([x["Value"] for x in g_res if x["Key"] == "y"][0])
 
-                # Temple distance check (must be > 200m)
-                dists = [(haversine(lat, lng, t["lat"], t["lng"]), t["name"]) for t in temples]
-                dists.sort(key=lambda x: x[0])
-                if dists and dists[0][0] < 200:
-                    continue
-                temple_str = f"🟢 250m內無大廟（最近{dists[0][1]} {int(dists[0][0])}m）" if dists else "🟢 周邊無登記大廟"
+def check_listing(url):
+    if "yungching.com.tw/house/" in url:
+        return check_yungching(url)
+    if "rakuya.com.tw" in url:
+        return check_rakuya(url)
+    raise RuntimeError("不支援的網站")
 
-                # Liquefaction check
-                l_url = f"https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer/0/query?geometry={lng},{lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json"
-                l_res = json.loads(urllib.request.urlopen(urllib.request.Request(l_url, headers=HEADERS), timeout=8).read().decode("utf-8"))
-                feats = l_res.get("features", [])
-                t_code = feats[0]["attributes"].get("TYPE", "") if feats else "LOW"
-                liq_desc = {"LOW": "🟢 低潛勢（綠區）", "MED": "🟡 中潛勢（黃區）", "HIGH": "🔴 高潛勢（紅區）"}.get(t_code, "🟡 中潛勢")
-                liq_level = {"LOW": "low", "MED": "med", "HIGH": "high"}.get(t_code, "med")
 
-                new_found.append({
-                    "title": title,
-                    "addr": addr,
-                    "price": price,
-                    "unit_price": uprice,
-                    "age": age,
-                    "b_ping": b_ping,
-                    "l_ping": l_ping,
-                    "layout": f"{layout}｜{floors}",
-                    "liq_desc": liq_desc,
-                    "liq_level": liq_level,
-                    "temple_desc": temple_str,
-                    "url": url,
-                    "lat": round(lat, 5),
-                    "lng": round(lng, 5)
-                })
-                if len(new_found) >= 2:
-                    break
-        except Exception:
-            pass
-    return new_found
+# ---------- 寶可夢道館（twpkinfo，與 PokeGuard 同來源） ----------
+_gym_opener = None
+
+
+def gyms_near(lat, lng):
+    global _gym_opener
+    if _gym_opener is None:
+        _gym_opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(CookieJar()))
+        _gym_opener.addheaders = [("User-Agent", UA)]
+        _gym_opener.open("https://twpkinfo.com/igym.aspx", timeout=30).read()
+    pad = 0.0065
+    url = (f"https://twpkinfo.com/getgym.ashx?a={lat + pad}&b={lng + pad}&c={lat - pad}&d={lng - pad}"
+           f"&e=0&f=1&g=Y&h=&i=&j=765")
+    raw = _gym_opener.open(urllib.request.Request(url, headers={
+        "Referer": "https://twpkinfo.com/igym.aspx", "X-Requested-With": "XMLHttpRequest"}), timeout=30).read()
+    try:
+        raw = gzip.decompress(raw)
+    except OSError:
+        pass
+    rows = json.loads(raw.decode("utf-8-sig")).get("fp", [])
+    if rows and rows[0].get("a", "").startswith("error"):
+        raise RuntimeError(f"道館 API 拒絕：{rows[0].get('b')}")
+    out = []
+    for g in rows:
+        if g.get("i") == "stop":  # 火箭隊補給站，不是道館
+            continue
+        glat, glng = float(g["c"]), float(g["d"])
+        d = haversine(lat, lng, glat, glng)
+        if d <= GYM_RADIUS_M:
+            out.append({"name": g.get("g") or "（未命名道館）", "lat": glat, "lng": glng, "dist": int(d)})
+    return sorted(out, key=lambda x: x["dist"])
+
+
+# ---------- 新案雷達 ----------
+def scan_list_urls():
+    """回傳 [(url, name)]，9 區各自翻頁到沒有新物件為止"""
+    found = {}
+    for d in SCAN_DISTRICTS:
+        base = "https://buy.yungching.com.tw/list/" + urllib.parse.quote(f"台南市-{d}_c/{SCAN_FILTER}", safe="/_-")
+        for pg in range(1, 6):
+            html = get(base + (f"?pg={pg}" if pg > 1 else ""))
+            items = []
+            for blk in re.findall(r'"@type"\s*:\s*"ItemList".*?"itemListElement"\s*:\s*(\[.*?\])\s*[,}]', html, flags=re.S):
+                try:
+                    items += json.loads(blk)
+                except ValueError:
+                    pass
+            fresh = [(i["url"], i.get("name", "")) for i in items if "/house/" in i.get("url", "") and i["url"] not in found]
+            for u, n in fresh:
+                found[u] = n
+            if len(fresh) < 10:
+                break
+    return list(found.items())
+
+
+def inspect_candidate(url, temples):
+    """抓永慶物件頁，回傳 dict；不符條件回傳 (None, 原因)"""
+    t = flatten(get(url))
+    m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價([\d\.]+)萬/坪\s*\|\s*([^|]+)\s*\|\s*屋齡([\d\.]+)\s*年\s*\|\s*([^|]+)\s*\|\s*建物([\d\.]+)坪", t)
+    if not m:
+        return None, "讀不到價格欄位"
+    htype = m.group(3).strip()
+    if "透天" not in htype and "別墅" not in htype:
+        return None, f"型態 {htype}"
+    price, age = float(m.group(1).replace(",", "")), float(m.group(4))
+    if not (1200 <= price <= 1920) or age > 26:
+        return None, f"{price}萬/{age}年 超出條件"
+    l_m = re.search(r"土地坪數\s*\|\s*([\d\.]+)坪", t)
+    layout_m = re.search(r"建物格局\s*\|\s*([^|]+)", t)
+    addr_m = re.search(r"\|\s*([^|]*台南市[^|]+?)\s*\|", t)
+    addr = addr_m.group(1).replace("住宅", "").strip() if addr_m else "台南市"
+
+    g = json.loads(get(f"https://dmap.ncdr.nat.gov.tw/api/district2xyInfo?address={urllib.parse.quote(addr + '10號')}", 10))
+    lng = float(next(x["Value"] for x in g if x["Key"] == "x"))
+    lat = float(next(x["Value"] for x in g if x["Key"] == "y"))
+
+    dists = sorted((haversine(lat, lng, tp["lat"], tp["lng"]), tp["name"]) for tp in temples)
+    if dists and dists[0][0] < 200:
+        return None, f"{dists[0][1]} 只有 {int(dists[0][0])}m"
+    temple_desc = f"🟢 200m內無登記宮廟（最近 {dists[0][1]} 約 {int(dists[0][0])}m，座標以路段估）" if dists else "🟢 周邊無登記宮廟"
+
+    lq = json.loads(get("https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer/0/query?"
+                        f"geometry={lng},{lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects"
+                        "&outFields=*&returnGeometry=false&f=json", 10)).get("features", [])
+    code = lq[0]["attributes"].get("TYPE", "") if lq else "LOW"
+    return {
+        "addr": addr, "price": price, "unit_price": float(m.group(2)), "age": age,
+        "floors": m.group(5).strip(), "b_ping": float(m.group(6)),
+        "l_ping": float(l_m.group(1)) if l_m else 0.0,
+        "layout": layout_m.group(1).strip() if layout_m else "",
+        "liq_level": {"LOW": "low", "MED": "med", "HIGH": "high"}.get(code, "med"),
+        "liq_desc": {"LOW": "🟢 低潛勢（綠區）", "MED": "🟡 中潛勢（黃區）", "HIGH": "🔴 高潛勢（紅區）"}.get(code, "🟡 中潛勢"),
+        "temple_desc": temple_desc, "lat": round(lat, 5), "lng": round(lng, 5),
+    }, None
 
 
 def sync_to_google_sheet(data_bundle):
@@ -219,140 +254,128 @@ def sync_to_google_sheet(data_bundle):
     )
 
 
+
 def run_daily_check(scan_new=True):
-    now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    with open(PROP_FILE, "r", encoding="utf-8") as f:
-        data_bundle = json.load(f)
-
-    props = data_bundle.get("properties", [])
-    temples = data_bundle.get("temples", [])
-    existing_urls = {p["url"] for p in props if p.get("url")}
-
-    changes = []
-    checked_count = 0
+    now = datetime.datetime.now()
+    now_str, today = now.strftime("%Y-%m-%d %H:%M"), now.strftime("%Y-%m-%d")
+    with open(PROP_FILE, encoding="utf-8") as f:
+        data = json.load(f)
+    props, temples = data["properties"], data.get("temples", [])
+    changes, checked = [], 0
 
     for p in props:
-        if not p.get("tracked", True):
+        p.setdefault("added_at", "2026-11-10")
+        if "price_history" not in p:
+            p["price_history"] = [{"date": p["added_at"], "price": p.get("initial_price", p["price"])}]
+            if p["price"] != p["price_history"][0]["price"]:
+                p["price_history"].append({"date": p["added_at"], "price": p["price"]})
+        if p.get("status") == "已下架" or not p.get("url"):
             continue
-        url = p.get("url", "")
-        if "buy.yungching.com.tw/house/" in url:
-            checked_count += 1
-            res = check_yungching_listing(url)
-            p["last_checked"] = now_str
-            if not res["active"]:
-                if p.get("status") != "已下架":
-                    p["status"] = "已下架"
-                    p["price_trend"] = "已下架"
-                    changes.append(f"❌【已下架】{p['district_road']} - {p['title']} ({url})")
-            elif res.get("price") is not None:
-                old_p = p.get("price", res["price"])
-                new_p = res["price"]
-                if new_p < old_p:
-                    diff = round(old_p - new_p, 1)
-                    p["price_trend"] = f"📉降價{diff}萬(原{int(old_p)}萬)"
-                    p["price"] = new_p
-                    p["unit_price"] = res.get("unit_price", p["unit_price"])
-                    changes.append(f"📉【降價通知】{p['district_road']} - {p['title']} 從 {old_p} 萬降至 {new_p} 萬（-{diff}萬）！")
-                elif new_p > old_p:
-                    diff = round(new_p - old_p, 1)
-                    p["price_trend"] = f"📈漲價{diff}萬(原{int(old_p)}萬)"
-                    p["price"] = new_p
-                    p["unit_price"] = res.get("unit_price", p["unit_price"])
-                    changes.append(f"📈【漲價通知】{p['district_road']} - {p['title']} 從 {old_p} 萬調升至 {new_p} 萬（+{diff}萬）")
-                else:
-                    p["status"] = "上架追蹤中"
+        try:
+            res = check_listing(p["url"])
+        except Exception as e:
+            errors.append(f"{p['id']} 查價失敗：{e}")
+            continue
+        checked += 1
+        p["last_checked"] = now_str
+        if not res["active"]:
+            p["status"], p["price_trend"], p["delisted_at"] = "已下架", "已下架", today
+            changes.append(f"❌ 已下架：{p['district_road']}（{p['title']}）")
+            continue
+        old, new = p["price"], res["price"]
+        if new != old:
+            diff = round(abs(new - old), 1)
+            word = "降價" if new < old else "漲價"
+            p["price_trend"] = f"{'📉' if new < old else '📈'}{word}{diff:g}萬(原{old:g}萬)"
+            p["price"] = new
+            if res.get("unit_price"):
+                p["unit_price"] = res["unit_price"]
+            p["price_history"].append({"date": today, "price": new})
+            changes.append(f"{'📉' if new < old else '📈'} {word} {diff:g} 萬：{p['district_road']} {old:g}→{new:g} 萬")
 
-    new_items = []
+    new_count = 0
     if scan_new:
-        new_items = discover_new_yungching_candidates(existing_urls, temples)
-        for ni in new_items:
-            new_id = f"P{len(props) + 1:02d}"
-            est_cash = round(ni["price"] * 0.23, 0)
-            new_prop = {
-                "id": new_id,
-                "row_index": len(props) + 4,
-                "tracked": True,
-                "status": "🆕今日新發現",
-                "price_trend": "🆕新上架",
-                "last_checked": now_str,
-                "rank": "🆕新發現推薦",
-                "zone_type": "自動巡檢新案",
-                "district_road": ni["addr"],
-                "title": ni["title"],
-                "developer": "【待查閱不動產說明書】自動巡檢新發現之車庫透天物件",
-                "price": ni["price"],
-                "initial_price": ni["price"],
-                "unit_price": ni["unit_price"],
-                "ref_unit_price": "25.0～32.0 萬/坪",
-                "target_price": f"{int(ni['price']*0.9)} ～ {int(ni['price']*0.93)} 萬",
-                "cash_needed": f"約 {int(est_cash)} 萬（貸8成試算）",
-                "monthly_pay": f"約 {int(ni['price']*0.8*10000*0.004003):,} 元",
-                "age": ni["age"],
-                "area_str": f"建 {ni['b_ping']} / 地 {ni['l_ping']}",
-                "layout": ni["layout"],
-                "garage_road": "獨立車庫透天",
-                "commute_pogo": "南科30分鐘通勤圈內",
-                "flood_desc": "🟢 低風險（自動檢核通過）",
-                "flood_level": "low",
-                "liq_desc": ni["liq_desc"],
-                "liq_level": ni["liq_level"],
-                "temple_desc": ni["temple_desc"],
-                "cadastral_desc": "純住宅區",
-                "summary_note": f"【{now_str} 自動巡檢新發現】通過宮廟距離(>200m)與價格篩選",
-                "url": ni["url"],
-                "lat": ni["lat"],
-                "lng": ni["lng"]
-            }
-            props.append(new_prop)
-            changes.append(f"🆕【新物件發現】{ni['addr']} - {ni['title']} 開價 {ni['price']} 萬 ({ni['age']}年) {ni['url']}")
+        known = {p["url"] for p in props}
+        try:
+            listing = scan_list_urls()
+        except Exception as e:
+            listing = []
+            errors.append(f"新案搜尋頁讀取失敗：{e}")
+        seen = set(data.setdefault("radar_seen", []))
+        sigs = {(p["price"], p.get("age")) for p in props}
+        for url, name in listing:
+            if url in known or url in seen:
+                continue
+            seen.add(url)
+            if not NAME_MUST.search(name) or NAME_SKIP.search(name):
+                continue
+            try:
+                ni, why = inspect_candidate(url, temples)
+            except Exception as e:
+                seen.discard(url)  # 暫時性錯誤，明天再試
+                errors.append(f"新案 {url} 檢查失敗：{e}")
+                continue
+            if not ni or "住店" in ni["addr"] or (ni["price"], ni["age"]) in sigs:
+                continue
+            sigs.add((ni["price"], ni["age"]))
+            n = max(int(x["id"][1:]) for x in props) + 1
+            props.append({
+                "id": f"P{n:02d}", "tracked": True, "status": "上架追蹤中", "price_trend": "🆕新上架",
+                "added_at": today, "last_checked": now_str, "rank": "🆕新案雷達", "zone_type": "自動巡檢新案",
+                "district_road": ni["addr"].replace("台南市", ""), "title": name,
+                "developer": "【待查】新案雷達自動加入，建商與屋況尚未人工健檢",
+                "price": ni["price"], "initial_price": ni["price"], "unit_price": ni["unit_price"],
+                "price_history": [{"date": today, "price": ni["price"]}],
+                "ref_unit_price": "待查", "target_price": f"{int(ni['price'] * 0.9):,} ～ {int(ni['price'] * 0.93):,} 萬",
+                "cash_needed": f"約 {int(ni['price'] * 0.23)} 萬（貸8成試算）",
+                "monthly_pay": f"約 {int(ni['price'] * 0.8 * 10000 * 0.004003):,} 元",
+                "age": ni["age"], "area_str": f"建 {ni['b_ping']} / 地 {ni['l_ping']}",
+                "layout": f"{ni['layout']}｜{ni['floors']}", "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
+                "commute_pogo": "", "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）", "flood_level": "unknown",
+                "liq_desc": ni["liq_desc"], "liq_level": ni["liq_level"], "temple_desc": ni["temple_desc"],
+                "cadastral_desc": "待查", "summary_note": f"{today} 新案雷達加入：過宮廟 200m 與液化檢核，其餘待看屋確認",
+                "url": url, "lat": ni["lat"], "lng": ni["lng"],
+            })
+            known.add(url)
+            new_count += 1
+            changes.append(f"🆕 新物件：{ni['addr']} {name} {ni['price']:g} 萬（{ni['age']:g} 年）")
 
-    data_bundle["updated_at"] = now_str
+        data["radar_seen"] = sorted(seen)
+
+    for p in props:
+        if "gyms" not in p and p.get("status") != "已下架":
+            try:
+                p["gyms"] = gyms_near(p["lat"], p["lng"])
+            except Exception as e:
+                errors.append(f"{p['id']} 道館查詢失敗：{e}")
+
+    data["updated_at"] = now_str
     with open(PROP_FILE, "w", encoding="utf-8") as f:
-        json.dump(data_bundle, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=1)
 
-    sync_to_google_sheet(data_bundle)
-
-    # 同步嵌入最新資料至 index.html 並自動推送到手機雲端網頁 (GitHub Pages)
-    html_path = os.path.join(BASE_DIR, "index.html")
-    if os.path.exists(html_path):
-        with open(html_path, "r", encoding="utf-8") as hf:
-            html_txt = hf.read()
-        s_mk = "window.__INITIAL_DATA__ = "
-        e_mk = ";\n    let appData = window.__INITIAL_DATA__;"
-        s_i = html_txt.find(s_mk)
-        e_i = html_txt.find(e_mk)
-        if s_i != -1 and e_i != -1:
-            html_txt = html_txt[:s_i + len(s_mk)] + json.dumps(data_bundle, ensure_ascii=False) + html_txt[e_i:]
-            with open(html_path, "w", encoding="utf-8") as hf:
-                hf.write(html_txt)
     try:
-        subprocess.run(["git", "-C", BASE_DIR, "add", "index.html", "properties.json", "daily_check_log.json"], capture_output=True)
-        subprocess.run(["git", "-C", BASE_DIR, "-c", "user.name=Antigravity", "-c", "user.email=reallychien-ops@users.noreply.github.com", "commit", "-m", f"Daily check update {now_str}"], capture_output=True)
-        subprocess.run(["git", "-C", BASE_DIR, "push", "origin", "main"], capture_output=True)
-    except Exception:
-        pass
+        sync_to_google_sheet(data)
+    except Exception as e:
+        errors.append(f"試算表同步失敗：{e}")
 
-
-    log_entry = {
-        "timestamp": now_str,
-        "checked_count": checked_count,
-        "new_discovered_count": len(new_items),
-        "changes": changes if changes else ["✅ 所有追蹤中物件今日價格均持平、正常上架中。"]
-    }
+    entry = {"timestamp": now_str, "checked_count": checked, "new_discovered_count": new_count,
+             "changes": changes or ["✅ 全部持平"], "errors": errors}
     logs = []
     if os.path.exists(LOG_FILE):
-        try:
-            with open(LOG_FILE, "r", encoding="utf-8") as f:
-                logs = json.load(f)
-        except Exception:
-            logs = []
-    logs.insert(0, log_entry)
+        with open(LOG_FILE, encoding="utf-8") as f:
+            logs = json.load(f)
+    logs.insert(0, entry)
     with open(LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(logs[:30], f, ensure_ascii=False, indent=2)
+        json.dump(logs[:60], f, ensure_ascii=False, indent=2)
 
-    return log_entry
+    git = ["git", "-C", BASE_DIR]
+    subprocess.run(git + ["add", "properties.json", "daily_check_log.json"], capture_output=True)
+    subprocess.run(git + ["commit", "-m", f"Daily check {now_str}"], capture_output=True)
+    push = subprocess.run(git + ["push", "origin", "main"], capture_output=True, text=True)
+    if push.returncode != 0:
+        entry["errors"].append(f"git push 失敗：{push.stderr.strip()[:200]}")
+    return entry
 
 
 if __name__ == "__main__":
-    result = run_daily_check(scan_new=True)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(run_daily_check(scan_new=True), ensure_ascii=False, indent=2))

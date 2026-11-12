@@ -14,7 +14,7 @@ import json
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import daily_tracker
 
-BASE_DIR = "/Users/chien/Antigravity/tainan_house_tracker"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROP_FILE = os.path.join(BASE_DIR, "properties.json")
 LOG_FILE = os.path.join(BASE_DIR, "daily_check_log.json")
 
@@ -91,6 +91,6 @@ class TrackerHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8765))
-    server = HTTPServer(("127.0.0.1", port), TrackerHandler)
+    server = HTTPServer(("0.0.0.0", port), TrackerHandler)
     print(f"Tainan House Tracker running at http://localhost:{port}")
     server.serve_forever()
