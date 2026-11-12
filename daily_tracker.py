@@ -206,7 +206,7 @@ def sync_to_google_sheet(data_bundle):
             # 使用者在網頁上手動刪除/停止追蹤的物件，不寫入主表
             continue
         trend_badge = ""
-        if p.get("price_trend") and p["price_trend"] != "持平":
+        if p.get("price_trend") and p["price_trend"] not in ("持平", "已下架"):
             trend_badge = f"【{p['price_trend']}】"
         status_badge = ""
         if p.get("status") == "已下架":
@@ -237,7 +237,7 @@ def sync_to_google_sheet(data_bundle):
         ])
 
     subprocess.run(
-        ["gws", "sheets", "spreadsheets", "values", "clear", "--params", json.dumps({"spreadsheetId": SPREADSHEET_ID, "range": "'1_精選推薦物件總表'!A1:Z50"})],
+        ["gws", "sheets", "spreadsheets", "values", "clear", "--params", json.dumps({"spreadsheetId": SPREADSHEET_ID, "range": "'1_精選推薦物件總表'!A1:Z500"})],
         capture_output=True
     )
     val_body = {
