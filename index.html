@@ -127,6 +127,11 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .gym-list{display:flex;flex-wrap:wrap;gap:6px}
 .gym-list span{font-size:12px;background:#f3f0ff;color:#5b21b6;border-radius:6px;padding:2px 7px}
 .empty{color:var(--muted);text-align:center;padding:48px 0}
+.geo{display:flex;flex-direction:column;gap:6px;margin:2px 0 10px}
+.geo button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:10px 12px;border-radius:12px;background:var(--accent-soft);color:var(--ink);font-size:14px}
+.geo button small{display:block;color:var(--muted);font-size:12px}
+.geo button svg.i{flex:none;color:var(--accent)}
+.geo .msg{color:var(--muted);font-size:13px;padding:6px 4px}
 
 /* ---------- map controls ---------- */
 .fabs{position:absolute;top:16px;right:16px;z-index:600;display:flex;flex-direction:column;gap:10px}
@@ -271,7 +276,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
         <span class="sp"></span>
         <button class="ib" id="btnLog" title="最近變動" aria-label="最近變動"><svg class="i"><use href="#i-bell"/></svg><span class="dot" hidden></span></button>
       </div>
-      <label class="search"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="路名、社區、行政區" autocomplete="off"></label>
+      <label class="search"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="路名、社區、地標（台南車站、奇美…）" autocomplete="off"></label>
       <div class="chips" id="chips" role="toolbar" aria-label="篩選"></div>
       <div class="ranges">
         <div class="rg"><span>價格（萬）</span><select id="minPrice" aria-label="價格下限"><option value="">最低</option></select><i>～</i><select id="maxPrice" aria-label="價格上限"><option value="">最高</option></select></div>
@@ -382,6 +387,7 @@ map.setMinZoom(map.getBoundsZoom(TAINAN, false));
 
 const markers = L.layerGroup().addTo(map);
 const focusLayer = L.layerGroup().addTo(map);
+const placeLayer = L.layerGroup().addTo(map); // 搜尋到的地標
 const markerById = {};
 L.marker([23.1015, 120.2745], {icon: L.divIcon({className: '', iconSize: [0, 0], html: `<div class="stsp" title="南科">${icon('i-factory')}</div>`}), keyboard: false})
   .bindPopup('<b>南部科學園區</b><br>善化／新市／安定 約 5–12 分鐘；新化／永康／安南／麻豆 約 15–20 分鐘').addTo(map);
@@ -506,6 +512,11 @@ function drawMarkers(){
   drawGyms(); drawTemples();
 }
 
+// 手機：清單蓋住地圖下半，把目標往上移到看得到的地方
+function flyToVisible(lat, lng){
+  const z = Math.max(map.getZoom(), 15);
+  map.flyTo(map.unproject(map.project([lat, lng], z).add([0, isMobile() ? (panel.offsetHeight - sheetPos(sheetState)) / 2 : 0]), z), z, {duration: .6});
+}
 function select(id, scrollList = true, pan = true){
   selected = id;
   const p = data.properties.find(x => x.id === id);
@@ -519,11 +530,7 @@ function select(id, scrollList = true, pan = true){
   if (!p || !p.lat) return;
   L.circle([p.lat, p.lng], {radius: 500, color: '#7c3aed', weight: 1.5, dashArray: '5 6', fillColor: '#7c3aed', fillOpacity: .05, interactive: false}).addTo(focusLayer);
   (p.gyms || []).forEach(g => gymMarker(g, true).addTo(focusLayer));
-  if (pan){
-    const z = Math.max(map.getZoom(), 15);
-    // 手機：清單蓋住地圖下半，把物件往上移到看得到的地方
-    map.flyTo(map.unproject(map.project([p.lat, p.lng], z).add([0, isMobile() ? (panel.offsetHeight - sheetPos(sheetState)) / 2 : 0]), z), z, {duration: .6});
-  }
+  if (pan) flyToVisible(p.lat, p.lng);
   if (scrollList && card){
     const list = $('#list');
     if (isMobile()) list.scrollTop += card.getBoundingClientRect().top - list.getBoundingClientRect().top - 4; // 清單保持收起，拉上來就是這間
@@ -591,7 +598,7 @@ function render(){
   renderChips();
   const v = visible();
   $('#countText').textContent = `${FILTERS.find(f => f.id === filter).label} · ${v.length} 間`;
-  $('#list').innerHTML = v.length ? v.map(card).join('') : `<div class="empty">沒有符合的物件</div>`;
+  $('#list').innerHTML = geoHtml() + (v.length ? v.map(card).join('') : `<div class="empty">沒有符合的物件</div>`);
   drawMarkers();
   if (selected && document.getElementById('card-' + selected)) select(selected, false, false); else focusLayer.clearLayers();
 }
@@ -600,7 +607,49 @@ $('#chips').addEventListener('click', e => {
   const b = e.target.closest('.chip'); if (!b) return;
   filter = b.dataset.f; render(); fitAll();
 });
-$('#q').addEventListener('input', () => render());
+$('#q').addEventListener('input', () => { render(); $('#list').scrollTop = 0; });
+// 手機：點搜尋框就把清單拉開，才看得到搜尋結果
+$('#q').addEventListener('focus', () => { if (isMobile() && sheetState !== 'full') setSheet('full'); });
+/* ---------- 地標搜尋（OpenStreetMap Nominatim；它的規定是不能邊打邊查，所以要按按鈕或 Enter） ---------- */
+let geo = {q: ''};
+function geoHtml(){
+  const q = $('#q').value.trim();
+  if (!q) return '';
+  if (geo.q !== q) return `<div class="geo"><button data-geo>${icon('i-pin')}<span>在地圖上找「${esc(q)}」<small>地標、學校、車站、路名</small></span></button></div>`;
+  if (geo.busy) return `<div class="geo"><div class="msg">查詢「${esc(q)}」中…</div></div>`;
+  if (!geo.items.length) return `<div class="geo"><div class="msg">${geo.err ? '地標查詢失敗，請稍後再試' : `台南範圍找不到「${esc(q)}」`}</div></div>`;
+  return `<div class="geo">${geo.items.map((it, i) => {
+    const parts = it.display_name.split(', '), area = parts.find(x => /[區鄉鎮]$/.test(x)) || '';
+    return `<button data-geo-i="${i}">${icon('i-pin')}<span>${esc(it.name || parts[0])}<small>${esc([area, parts.slice(1, 3).join(' ')].filter(Boolean).join('・'))}</small></span></button>`;
+  }).join('')}</div>`;
+}
+async function findPlace(){
+  const q = $('#q').value.trim(); if (!q) return;
+  geo = {q, busy: true}; render();
+  try {
+    const items = await fetch('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({q, format: 'json', limit: 10, countrycodes: 'tw',
+      viewbox: '120.02,23.42,120.67,22.87', bounded: 1, 'accept-language': 'zh-TW'})).then(r => r.json());
+    // YouBike 站、公車站、停車場這類小地點排後面（不然「台南車站」會先列 4 個 YouBike 站）
+    const minor = it => /bicycle_rental|bus_stop|platform|parking|charging_station|atm|vending|toilets/.test(it.type) ? 1 : 0;
+    items.sort((a, b) => minor(a) - minor(b) || (b.importance || 0) - (a.importance || 0));
+    geo = {q, items: items.slice(0, 6)};
+  } catch(e){ geo = {q, items: [], err: true}; }
+  if ($('#q').value.trim() === q){ render(); $('#list').scrollTop = 0; if (isMobile()) setSheet('full'); }
+}
+function goPlace(it){
+  const lat = +it.lat, lng = +it.lon, name = it.name || it.display_name.split(', ')[0];
+  placeLayer.clearLayers();
+  L.circleMarker([lat, lng], {radius: 9, color: '#fff', weight: 3, fillColor: '#f97316', fillOpacity: 1}).bindTooltip(esc(name), {permanent: true, direction: 'top', offset: [0, -8]}).addTo(placeLayer);
+  $('#q').value = ''; geo = {q: ''}; $('#q').blur();
+  render();
+  if (isMobile()) setSheet('peek');
+  flyToVisible(lat, lng);
+}
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); findPlace(); } });
+$('#list').addEventListener('click', e => {
+  if (e.target.closest('[data-geo]')) return findPlace();
+  const b = e.target.closest('[data-geo-i]'); if (b) goPlace(geo.items[+b.dataset.geoI]);
+});
 RANGE_IDS.forEach(id => $('#' + id).addEventListener('change', e => {
   safeSet('tainan_' + id, e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); fitAll();
 }));
@@ -610,7 +659,7 @@ $('#list').addEventListener('click', e => {
   ({
     nav: () => window.open(`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`, '_blank'),
     link: () => window.open(p.url, '_blank', 'noopener'),
-    focus: () => { if (!isGone(p)) { select(id, false); if (isMobile()) setSheet('peek'); } },
+    focus: () => { if (!isGone(p)) { if (isMobile()) setSheet('peek'); select(id, false); } },
     more: () => el.classList.toggle('open'),
     fav: () => {
       favs.has(id) ? favs.delete(id) : favs.add(id);
