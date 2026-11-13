@@ -67,7 +67,9 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .c-act .ib.fav-on svg{fill:currentColor}
 .pin .hrt{color:#fda4af;margin-right:3px}
 .z-far .pin.fav{box-shadow:0 0 0 3px #e11d48}
-.ranges{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ranges{display:grid;gap:6px}
+.rg{display:grid;grid-template-columns:64px 1fr auto 1fr;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.rg i{font-style:normal}
 .ranges select{height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);font:inherit;font-size:14px;padding:0 10px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat}
 .ranges select.on{background-color:var(--ink);border-color:var(--ink);color:#fff}
 
@@ -272,8 +274,8 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
       <label class="search"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="路名、社區、行政區" autocomplete="off"></label>
       <div class="chips" id="chips" role="toolbar" aria-label="篩選"></div>
       <div class="ranges">
-        <select id="maxPrice" aria-label="價格上限"><option value="">價格不限</option></select>
-        <select id="maxAge" aria-label="屋齡上限"><option value="">屋齡不限</option></select>
+        <div class="rg"><span>價格（萬）</span><select id="minPrice" aria-label="價格下限"><option value="">最低</option></select><i>～</i><select id="maxPrice" aria-label="價格上限"><option value="">最高</option></select></div>
+        <div class="rg"><span>屋齡（年）</span><select id="minAge" aria-label="屋齡下限"><option value="">最低</option></select><i>～</i><select id="maxAge" aria-label="屋齡上限"><option value="">最高</option></select></div>
       </div>
     </div>
     <div class="meta-row"><span id="countText"></span><span id="legend"></span></div>
@@ -352,11 +354,17 @@ function query(p){
   if (!q) return true;
   return `${p.id} ${p.district_road} ${p.title} ${p.zone_type} ${p.summary_note}`.toLowerCase().includes(q);
 }
-const PRICE_OPTS = [1300, 1400, 1500, 1600, 1700, 1800, 1900], AGE_OPTS = [5, 10, 15, 20, 25];
-$('#maxPrice').insertAdjacentHTML('beforeend', PRICE_OPTS.map(v => `<option value="${v}">${fmt(v)} 萬以下</option>`).join(''));
-$('#maxAge').insertAdjacentHTML('beforeend', AGE_OPTS.map(v => `<option value="${v}">屋齡 ${v} 年內</option>`).join(''));
-['maxPrice', 'maxAge'].forEach(id => { const el = $('#' + id); el.value = safeGet('tainan_' + id) || ''; el.classList.toggle('on', !!el.value); });
-const inRange = p => (!$('#maxPrice').value || p.price <= +$('#maxPrice').value) && (!$('#maxAge').value || p.age <= +$('#maxAge').value);
+// 價格、屋齡範圍：各一組「最低～最高」，不選＝不限；選反了自動對調
+const RANGE_OPTS = {minPrice: [1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900], maxPrice: [1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000],
+  minAge: [0, 5, 10, 15, 20, 25], maxAge: [5, 10, 15, 20, 25, 30]};
+const RANGE_IDS = Object.keys(RANGE_OPTS);
+RANGE_IDS.forEach(id => {
+  const el = $('#' + id);
+  el.insertAdjacentHTML('beforeend', RANGE_OPTS[id].map(v => `<option value="${v}">${fmt(v)}</option>`).join(''));
+  el.value = safeGet('tainan_' + id) || ''; el.classList.toggle('on', !!el.value);
+});
+const between = (x, lo, hi) => { [lo, hi] = [lo === '' ? -Infinity : +lo, hi === '' ? Infinity : +hi].sort((a, b) => a - b); return x >= lo && x <= hi; };
+const inRange = p => between(p.price, $('#minPrice').value, $('#maxPrice').value) && between(p.age, $('#minAge').value, $('#maxAge').value);
 const visible = () => data.properties.filter(p => FILTERS.find(f => f.id === filter).test(p) && query(p) && inRange(p))
   .sort((a, b) => (favs.has(b.id) - favs.has(a.id)) || (isStar(b) - isStar(a)) || (isRadar(a) - isRadar(b)) || (isNew(b) - isNew(a)) || String(a.rank).localeCompare(String(b.rank)) || a.price - b.price);
 
@@ -593,7 +601,7 @@ $('#chips').addEventListener('click', e => {
   filter = b.dataset.f; render(); fitAll();
 });
 $('#q').addEventListener('input', () => render());
-['maxPrice', 'maxAge'].forEach(id => $('#' + id).addEventListener('change', e => {
+RANGE_IDS.forEach(id => $('#' + id).addEventListener('change', e => {
   safeSet('tainan_' + id, e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); fitAll();
 }));
 $('#list').addEventListener('click', e => {
