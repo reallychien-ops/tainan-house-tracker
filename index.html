@@ -379,22 +379,23 @@ L.marker([23.1015, 120.2745], {icon: L.divIcon({className: '', iconSize: [0, 0],
   .bindPopup('<b>南部科學園區</b><br>善化／新市／安定 約 5–12 分鐘；新化／永康／安南／麻豆 約 15–20 分鐘').addTo(map);
 
 /* layers: liquefaction / flood / temple / cadastral / gyms */
-const LIQ_URL = 'https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer';
-const LiqLayer = L.GridLayer.extend({createTile(c){
-  const t = document.createElement('img'), m = this._map;
-  const nw = m.unproject([c.x * 256, c.y * 256], c.z), se = m.unproject([(c.x + 1) * 256, (c.y + 1) * 256], c.z);
-  t.src = `${LIQ_URL}/export?bbox=${nw.lng},${se.lat},${se.lng},${nw.lat}&bboxSR=4326&imageSR=3857&size=256,256&format=png32&transparent=true&f=image`;
-  t.alt = ''; return t;
-}});
+// 地調所土壤液化潛勢（2026 版）台南範圍預先轉成 liq.png（build_liq.py），跟淹水圖同範圍同像素；不即時連 gis.liquid.net.tw（常常很慢或逾時）
+const LIQ = [null, ['#55ff00', '🟢 低潛勢'], ['#ffff00', '🟡 中潛勢'], ['#ff0000', '🔴 高潛勢']];
 // 水利署第三代淹水潛勢（24 小時 650mm），台南範圍預先轉成 flood_650.png（build_flood.py），不即時連水利署（有防爬蟲驗證碼）
 const FLOOD = [null, ['#9fd8ff', '0.3–0.5'], ['#4fb0f5', '0.5–1'], ['#1f7fe0', '1–2'], ['#1847b8', '2–3'], ['#170f73', '>3']];
 let floodData = null;
 const loadFlood = () => floodData ||= fetch('flood_650.json').then(r => r.json()).then(m => new Promise((ok, bad) => {
   const img = new Image(); img.onload = () => ok({...m, img}); img.onerror = bad; img.src = 'flood_650.png';
 }));
-// 查某一點的淹水級距：只把那 1 個像素畫到小畫布上讀顏色
-async function floodAt(lat, lng){
-  const m = await loadFlood(), [[s, w], [n, e]] = m.bounds, [W, H] = m.size;
+let liqData = null;
+const loadLiq = () => liqData ||= loadFlood().then(m => new Promise((ok, bad) => {
+  const img = new Image(); img.onload = () => ok({...m, img}); img.onerror = bad; img.src = 'liq.png';
+}));
+const floodAt = async (lat, lng) => pixelAt(await loadFlood(), FLOOD, lat, lng);
+const liqAt = async (lat, lng) => pixelAt(await loadLiq(), LIQ, lat, lng);
+// 查某一點在圖上的級距：只把那 1 個像素畫到小畫布上讀顏色，再對回調色盤
+function pixelAt(m, PAL, lat, lng){
+  const [[s, w], [n, e]] = m.bounds, [W, H] = m.size;
   const my = la => Math.log(Math.tan(Math.PI / 4 + la * Math.PI / 360));
   const x = Math.floor((lng - w) / (e - w) * W), y = Math.floor((my(n) - my(lat)) / (my(n) - my(s)) * H);
   if (x < 0 || y < 0 || x >= W || y >= H) return 0;
@@ -403,11 +404,16 @@ async function floodAt(lat, lng){
   const [r, g, b, a] = cx.getImageData(0, 0, 1, 1).data;
   if (a < 128) return 0;
   let best = 1, bd = 1e9;
-  FLOOD.forEach((f, i) => { if (!f) return; const h = parseInt(f[0].slice(1), 16), d = (r - (h >> 16)) ** 2 + (g - (h >> 8 & 255)) ** 2 + (b - (h & 255)) ** 2; if (d < bd){ bd = d; best = i; } });
+  PAL.forEach((f, i) => { if (!f) return; const h = parseInt(f[0].slice(1), 16), d = (r - (h >> 16)) ** 2 + (g - (h >> 8 & 255)) ** 2 + (b - (h & 255)) ** 2; if (d < bd){ bd = d; best = i; } });
   return best;
 }
 const LAYERS = {
-  liq: {ic: 'i-wave', short: '液化', name: '土壤液化潛勢（地調所 2026）', make: () => new LiqLayer({opacity: .5})},
+  liq: {ic: 'i-wave', short: '液化', name: '土壤液化潛勢（地調所 2026）', make: () => {
+    const g = L.layerGroup();
+    loadLiq().then(m => L.imageOverlay('liq.png', m.bounds, {opacity: .5, interactive: false, className: 'flood-img'}).addTo(g))
+      .catch(() => toast('液化資料載入失敗'));
+    return g;
+  }},
   flood: {ic: 'i-drop', short: '淹水', name: '淹水潛勢（水利署，一日 650mm 豪雨）', make: () => {
     const g = L.layerGroup();
     loadFlood().then(m => L.imageOverlay('flood_650.png', m.bounds, {opacity: .7, interactive: false, className: 'flood-img'}).addTo(g))
@@ -635,11 +641,8 @@ map.on('click', async e => {
   const {lat, lng} = e.latlng, rows = [];
   const pop = L.popup({maxWidth: 240}).setLatLng(e.latlng).setContent('查詢中…').openOn(map);
   if (layerOn.liq){
-    try {
-      const d = await fetch(`${LIQ_URL}/0/query?geometry=${lng},${lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TYPE&returnGeometry=false&f=json`).then(r => r.json());
-      const t = d.features?.[0]?.attributes?.TYPE;
-      rows.push(`液化：${({LOW: '🟢 低潛勢', MED: '🟡 中潛勢', HIGH: '🔴 高潛勢'})[t] || '⚪ 不在液化潛勢區'}`);
-    } catch(err){ rows.push('液化：查詢失敗，請稍後再試'); }
+    const c = await liqAt(lat, lng).catch(() => -1);
+    rows.push(`液化：${c < 0 ? '資料載入失敗' : c ? LIQ[c][1] : '⚪ 不在液化潛勢區'}`);
   }
   if (layerOn.flood){
     const c = await floodAt(lat, lng).catch(() => -1);

@@ -127,20 +127,25 @@ def gyms_near(lat, lng):
     return sorted(out, key=lambda x: x["dist"])
 
 
-_flood = None
+_rasters = {}
 
 
-def flood_check(lat, lng, old_desc=""):
-    global _flood
-    if _flood is None:
+def raster_at(png, lat, lng):
+    """讀預轉圖（flood_650.png／liq.png，同範圍同像素）某點的調色盤索引；0＝不在潛勢區"""
+    if png not in _rasters:
         with open(os.path.join(BASE_DIR, "flood_650.json"), encoding="utf-8") as f:
-            _flood = (json.load(f), Image.open(os.path.join(BASE_DIR, "flood_650.png")))
-    meta, img = _flood
+            _rasters[png] = (json.load(f), Image.open(os.path.join(BASE_DIR, png)))
+    meta, img = _rasters[png]
     (s, w), (n, e) = meta["bounds"]
     my = lambda la: math.log(math.tan(math.pi / 4 + math.radians(la) / 2))
     W, H = meta["size"]
     x, y = int((lng - w) / (e - w) * W), int((my(n) - my(lat)) / (my(n) - my(s)) * H)
-    c = img.getpixel((x, y)) if 0 <= x < W and 0 <= y < H else 0
+    return img.getpixel((x, y)) if 0 <= x < W and 0 <= y < H else 0
+
+
+def flood_check(lat, lng, old_desc=""):
+    c = raster_at("flood_650.png", lat, lng)
+    meta = _rasters["flood_650.png"][0]
     if not c:
         level, desc = "low", "🟢 一日 650mm 豪雨也不在淹水潛勢區"
     else:
@@ -204,10 +209,7 @@ def inspect_candidate(url, temples):
         return None, f"{dists[0][1]} 只有 {int(dists[0][0])}m"
     temple_desc = f"🟢 200m內無登記宮廟（最近 {dists[0][1]} 約 {int(dists[0][0])}m，座標以路段估）" if dists else "🟢 周邊無登記宮廟"
 
-    lq = json.loads(get("https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer/0/query?"
-                        f"geometry={lng},{lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects"
-                        "&outFields=*&returnGeometry=false&f=json", 10)).get("features", [])
-    code = lq[0]["attributes"].get("TYPE", "") if lq else "LOW"
+    code = ["LOW", "LOW", "MED", "HIGH"][raster_at("liq.png", lat, lng)]  # 地調所液化潛勢預轉圖（build_liq.py），不連常逾時的伺服器
     return {
         "addr": addr, "price": price, "unit_price": float(m.group(2)), "age": age,
         "floors": m.group(5).strip(), "b_ping": float(m.group(6)),

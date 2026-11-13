@@ -79,9 +79,10 @@ def main():
         mask = Image.new("1", (W, H), 0)
         d = ImageDraw.Draw(mask)
         bounds = list(shp.parts) + [len(shp.points)]
-        for i in range(len(shp.parts)):
-            ring = shp.points[bounds[i]:bounds[i + 1]]
-            area = sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1) in zip(ring, ring[1:] + ring[:1]))
+        # 大圈先畫、小圈後畫：洞裡面若還有一塊區域（洞中島），才不會被洞擦掉
+        rings = [shp.points[bounds[i]:bounds[i + 1]] for i in range(len(shp.parts))]
+        rings = [(sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1) in zip(r, r[1:] + r[:1])), r) for r in rings]
+        for area, ring in sorted(rings, key=lambda t: -abs(t[0])):
             d.polygon([px(p) for p in ring], fill=1 if area < 0 else 0)  # shapefile 外圈順時針、洞逆時針
         out.paste(c, mask=mask)
 
