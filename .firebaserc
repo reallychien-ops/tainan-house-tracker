@@ -1,0 +1,4 @@
+{
+  "projects": {"default": "price-tracker-cd800"},
+  "targets": {"price-tracker-cd800": {"hosting": {"tainan": ["tainan-house"]}}}
+}

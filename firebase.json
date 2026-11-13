@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "target": "tainan",
+    "public": ".",
+    "ignore": ["**/.*", "**/.*/**", "**/__pycache__/**", "*.py", "*.log", "firebase.json", "properties.json", "daily_check_log.json"],
+    "headers": [
+      {"source": "/@(index.html|sw.js|manifest.webmanifest)", "headers": [{"key": "Cache-Control", "value": "no-cache"}]},
+      {"source": "/", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+    ]
+  }
+}

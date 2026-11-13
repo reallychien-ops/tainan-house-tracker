@@ -6,7 +6,8 @@
 <title>台南找房</title>
 <meta name="description" content="台南透天物件地圖：每日查價、下架追蹤、新案雷達、液化／淹水／宮廟／地籍／道館圖層">
 <meta name="theme-color" content="#ffffff">
-<script>if (/githack\.com$/.test(location.hostname)) location.replace('https://reallychien-ops.github.io/tainan-house-tracker/');</script>
+<script>// 正式網址搬到 Firebase 獨立站台（GitHub Pages 網址在用戶手機 Chrome 裝不起來）；舊網址一律轉過去
+if (/githack\.com$|github\.io$/.test(location.hostname)) location.replace('https://tainan-house.web.app/');</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -748,7 +749,7 @@ $('#btnInstall').onclick = async () => {
   let man = '讀取中';
   try { const r = await fetch('manifest.webmanifest', {cache: 'no-store'}); man = r.ok ? `正常（${(await r.json()).name}）` : `讀不到（HTTP ${r.status}）`; } catch(e){ man = '讀不到：' + e.message; }
   const rows = [
-    ['網址', location.host === 'reallychien-ops.github.io' ? '正確' : `⚠️ ${location.host}（要用 reallychien-ops.github.io）`],
+    ['網址', location.host === 'tainan-house.web.app' ? '正確' : `⚠️ ${location.host}（要用 tainan-house.web.app）`],
     ['瀏覽器', inApp ? '⚠️ App 內建瀏覽器（不能安裝）' : /SamsungBrowser/.test(ua) ? 'Samsung 網際網路' : chrome ? `Chrome ${chrome}` : '其他'],
     ['安裝設定檔', man],
     ['背景程式', navigator.serviceWorker?.controller ? '運作中' : '還沒啟動（重新整理一次再試）'],
@@ -764,11 +765,13 @@ $('#btnInstall').onclick = async () => {
 $('#instOverlay').addEventListener('click', e => { if (e.target === e.currentTarget || e.target.closest('[data-close]')) e.currentTarget.classList.remove('show'); });
 
 /* ---------- load ---------- */
+// 資料每天由排程推到 GitHub，Firebase 版直接讀 GitHub Pages 上的那份（不用每天重新發布）
+const DATA_BASE = location.hostname.endsWith('.web.app') ? 'https://reallychien-ops.github.io/tainan-house-tracker/' : '';
 async function load(fresh){
   const bust = fresh ? `?t=${Date.now()}` : '';
   const [d, l] = await Promise.all([
-    fetch('properties.json' + bust, {cache: fresh ? 'reload' : 'default'}).then(r => r.json()),
-    fetch('daily_check_log.json' + bust, {cache: fresh ? 'reload' : 'default'}).then(r => r.json()).catch(() => []),
+    fetch(DATA_BASE + 'properties.json' + bust, {cache: fresh ? 'reload' : 'default'}).then(r => r.json()),
+    fetch(DATA_BASE + 'daily_check_log.json' + bust, {cache: fresh ? 'reload' : 'default'}).then(r => r.json()).catch(() => []),
   ]);
   data = d; logs = l;
   const up = `更新 ${data.updated_at}`;
