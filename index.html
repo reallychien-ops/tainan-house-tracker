@@ -122,14 +122,24 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .fab:hover{transform:translateY(-2px);box-shadow:var(--sh-3)}
 .fab:active{transform:scale(.94)}
 .fab[aria-pressed=true]{background:var(--ink);color:#fff}
+.fab[hidden]{display:none}
 .fab svg.i{width:22px;height:22px}
-.layers{position:absolute;top:16px;right:76px;z-index:600;background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-3);padding:10px;display:grid;grid-template-columns:repeat(5,52px);gap:8px;opacity:0;transform:translateX(8px) scale(.98);pointer-events:none;transition:all .18s}
+.layers{position:absolute;top:16px;right:76px;z-index:600;background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-3);padding:10px;display:grid;grid-template-columns:repeat(5,60px);gap:8px;opacity:0;transform:translateX(8px) scale(.98);pointer-events:none;transition:all .18s}
 .layers.show{opacity:1;transform:none;pointer-events:auto}
-.lt{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);transition:all .15s}
+.lt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:60px;height:60px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);transition:all .15s}
+.lt small{font-size:11px;line-height:1;color:var(--muted)}
+.lt[aria-pressed=true] small{color:#cbd5e1}
 .lt:hover{transform:translateY(-1px);border-color:#cfd5dd}
 .lt[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 4px 12px rgba(15,23,41,.25)}
 .lt svg.i{width:24px;height:24px}
 .lt .gymball{width:24px;height:24px}
+#lgd{position:absolute;left:16px;top:16px;z-index:600;background:var(--surface);border-radius:var(--r-sm);box-shadow:var(--sh-2);padding:8px 10px;font-size:12px;color:var(--ink-2);display:none;flex-direction:column;gap:6px;max-width:250px}
+#lgd.show{display:flex}
+#lgd b{font-weight:700;font-size:12px;color:var(--ink)}
+#lgd .row{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+#lgd .row span{display:inline-flex;align-items:center;gap:4px}
+#lgd i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+#lgd .hint{color:var(--muted);font-size:11px}
 
 /* pins */
 .pin{--pc:var(--ink);position:absolute;left:0;top:0;transform:translate(-50%,calc(-100% - 7px));background:var(--pc);color:#fff;font:700 12px/1 var(--num);padding:6px 9px;border-radius:10px;white-space:nowrap;box-shadow:0 3px 10px rgba(15,23,41,.3);border:2px solid #fff;transition:transform .15s}
@@ -147,6 +157,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .z-far .pin::after,.z-far .pin i{display:none}
 .z-far .pin.on{transform:translate(-50%,-50%) scale(1.5)}
 .base-tiles{filter:grayscale(1) contrast(.92) brightness(1.06)}
+.flood-img{image-rendering:pixelated}
 .stsp{transform:translate(-50%,-50%);background:#fff;border-radius:10px;padding:4px;box-shadow:var(--sh-2);display:grid;place-items:center;color:#0f1729}
 .leaflet-container{font:inherit}
 .leaflet-popup-content-wrapper{border-radius:14px;box-shadow:var(--sh-3)}
@@ -177,12 +188,13 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
   #panel.drag{transition:none}
   .handle{display:block;width:100%;height:22px;position:relative;cursor:grab;touch-action:none}
   .handle::after{content:"";position:absolute;left:50%;top:9px;width:40px;height:5px;border-radius:3px;background:#d4d8de;transform:translateX(-50%)}
-  .head{padding:0 14px 8px;touch-action:none}
+  .head{padding:0 14px 8px;touch-action:pan-x}
   .brand{display:none}
   .meta-row{padding:0 16px 6px}
   #list{padding:4px 12px calc(24px + var(--safe-b))}
   .fabs{top:calc(12px + var(--safe-t));right:12px}
-  .layers{top:calc(12px + var(--safe-t));right:70px;grid-template-columns:repeat(3,52px)}
+  .layers{top:calc(12px + var(--safe-t));right:70px;grid-template-columns:repeat(3,60px)}
+  #lgd{left:12px;top:calc(70px + var(--safe-t))}
   .mtop{display:flex!important}
 }
 .mtop{display:none;position:absolute;top:calc(12px + var(--safe-t));left:12px;z-index:600;align-items:center;gap:8px;background:var(--surface);border-radius:15px;box-shadow:var(--sh-2);padding:4px 6px 4px 4px;height:48px}
@@ -223,6 +235,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
   <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2c-.6-.9-1.6-1.3-2.8-1.3-1.6 0-2.8.8-2.8 2s1.1 1.7 2.8 2.1 2.9 1 2.9 2.2-1.3 2-2.9 2c-1.3 0-2.4-.5-3-1.5M12 6v1.9M12 16.2V18"/></symbol>
   <symbol id="i-build" viewBox="0 0 24 24"><path d="M4 20V8l6-4v16M10 20V9h10v11M3 20h18M14 13h2M14 16h2"/></symbol>
   <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V6h3l1 14Z"/><path d="M3 20h18"/></symbol>
+  <symbol id="i-install" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20Z"/><path d="M12 10v4M12 17h.01"/></symbol>
   <symbol id="gymball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#1f2937" stroke-width="1.6"/><path d="M2 12a10 10 0 0 1 20 0Z" fill="#ef4444" stroke="#1f2937" stroke-width="1.6"/><path d="M2 12h20" stroke="#1f2937" stroke-width="1.6"/><circle cx="12" cy="12" r="3" fill="#fff" stroke="#1f2937" stroke-width="1.6"/></symbol>
@@ -256,8 +269,10 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
       <button class="fab" id="btnFit" title="顯示全部物件" aria-label="顯示全部物件"><svg class="i"><use href="#i-fit"/></svg></button>
       <button class="fab" id="btnLocate" title="我的位置" aria-label="我的位置"><svg class="i"><use href="#i-locate"/></svg></button>
       <button class="fab" id="btnRefresh" title="重新載入資料" aria-label="重新載入資料"><svg class="i"><use href="#i-refresh"/></svg></button>
+      <button class="fab" id="btnInstall" title="安裝到主畫面" aria-label="安裝到主畫面" hidden><svg class="i"><use href="#i-install"/></svg></button>
     </div>
     <div class="layers" id="layers" role="group" aria-label="圖層"></div>
+    <div id="lgd" aria-live="polite"></div>
   </main>
 </div>
 
@@ -331,21 +346,42 @@ L.marker([23.1015, 120.2745], {icon: L.divIcon({className: '', iconSize: [0, 0],
   .bindPopup('<b>南部科學園區</b><br>善化／新市／安定 約 5–12 分鐘；新化／永康／安南／麻豆 約 15–20 分鐘').addTo(map);
 
 /* layers: liquefaction / flood / temple / cadastral / gyms */
+const LIQ_URL = 'https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer';
 const LiqLayer = L.GridLayer.extend({createTile(c){
   const t = document.createElement('img'), m = this._map;
   const nw = m.unproject([c.x * 256, c.y * 256], c.z), se = m.unproject([(c.x + 1) * 256, (c.y + 1) * 256], c.z);
-  t.src = `https://gis.liquid.net.tw/arcgis/rest/services/P04032/Soil_cgs_2026/MapServer/export?bbox=${nw.lng},${se.lat},${se.lng},${nw.lat}&bboxSR=4326&imageSR=3857&size=256,256&format=png32&transparent=true&f=image`;
+  t.src = `${LIQ_URL}/export?bbox=${nw.lng},${se.lat},${se.lng},${nw.lat}&bboxSR=4326&imageSR=3857&size=256,256&format=png32&transparent=true&f=image`;
   t.alt = ''; return t;
 }});
+// 水利署第三代淹水潛勢（24 小時 650mm），台南範圍預先轉成 flood_650.png（build_flood.py），不即時連水利署（有防爬蟲驗證碼）
+const FLOOD = [null, ['#fef604', '0.3–0.5'], ['#febf08', '0.5–1'], ['#fb7800', '1–2'], ['#fc0200', '2–3'], ['#b10203', '>3']];
+let floodData = null;
+const loadFlood = () => floodData ||= fetch('flood_650.json').then(r => r.json()).then(m => new Promise((ok, bad) => {
+  const img = new Image(); img.onload = () => ok({...m, img}); img.onerror = bad; img.src = 'flood_650.png';
+}));
+// 查某一點的淹水級距：只把那 1 個像素畫到小畫布上讀顏色
+async function floodAt(lat, lng){
+  const m = await loadFlood(), [[s, w], [n, e]] = m.bounds, [W, H] = m.size;
+  const my = la => Math.log(Math.tan(Math.PI / 4 + la * Math.PI / 360));
+  const x = Math.floor((lng - w) / (e - w) * W), y = Math.floor((my(n) - my(lat)) / (my(n) - my(s)) * H);
+  if (x < 0 || y < 0 || x >= W || y >= H) return 0;
+  const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+  const cx = cv.getContext('2d'); cx.drawImage(m.img, x, y, 1, 1, 0, 0, 1, 1);
+  const [r, g, b, a] = cx.getImageData(0, 0, 1, 1).data;
+  if (a < 128) return 0;
+  let best = 1, bd = 1e9;
+  FLOOD.forEach((f, i) => { if (!f) return; const h = parseInt(f[0].slice(1), 16), d = (r - (h >> 16)) ** 2 + (g - (h >> 8 & 255)) ** 2 + (b - (h & 255)) ** 2; if (d < bd){ bd = d; best = i; } });
+  return best;
+}
 const LAYERS = {
-  liq: {ic: 'i-wave', name: '土壤液化（地調所 2026）', make: () => new LiqLayer({opacity: .35})},
-  flood: {ic: 'i-drop', name: '淹水潛勢（AG 手繪示意，非官方圖資）', make: () => {
+  liq: {ic: 'i-wave', short: '液化', name: '土壤液化潛勢（地調所 2026）', make: () => new LiqLayer({opacity: .5})},
+  flood: {ic: 'i-drop', short: '淹水', name: '淹水潛勢（水利署，一日 650mm 豪雨）', make: () => {
     const g = L.layerGroup();
-    [[23.04225, 120.2468, 600, '永康三民街／鹽水溪排水低窪帶', 1], [22.9685, 120.2521, 650, '仁德仁義四街／三爺溪排水帶', 1], [23.041, 120.205, 950, '安南區局部低窪排水緩衝帶', 0]]
-      .forEach(([la, ln, r, n, hi]) => L.circle([la, ln], {radius: r, color: hi ? '#dc2626' : '#2563eb', weight: 1.5, dashArray: hi ? '' : '6 6', fillOpacity: hi ? .22 : .1}).bindTooltip(n).addTo(g));
+    loadFlood().then(m => L.imageOverlay('flood_650.png', m.bounds, {opacity: .6, interactive: false, className: 'flood-img'}).addTo(g))
+      .catch(() => toast('淹水資料載入失敗'));
     return g;
   }},
-  temple: {ic: 'i-temple', name: '登記宮廟＋150m 範圍', make: () => {
+  temple: {ic: 'i-temple', short: '宮廟', name: '登記宮廟＋150m 範圍', make: () => {
     const g = L.layerGroup();
     (data.temples || []).forEach(t => {
       L.circle([t.lat, t.lng], {radius: 150, color: '#ef4444', weight: .8, fillOpacity: .08, interactive: false}).addTo(g);
@@ -354,9 +390,17 @@ const LAYERS = {
     });
     return g;
   }},
-  sect: {ic: 'i-parcel', name: '地籍段界（國土測繪中心）', make: () => L.tileLayer.wms('https://wms.nlsc.gov.tw/wms', {layers: 'LANDSECT', format: 'image/png', transparent: true, opacity: .65})},
-  gym: {ic: 'gymball', name: '物件 500m 內道館', make: () => L.layerGroup(), dynamic: true},
+  sect: {ic: 'i-parcel', short: '地籍', name: '地籍段界（國土測繪中心）', make: () => L.tileLayer.wms('https://wms.nlsc.gov.tw/wms', {layers: 'LANDSECT', format: 'image/png', transparent: true, opacity: .65})},
+  gym: {ic: 'gymball', short: '道館', name: '物件 500m 內道館', make: () => L.layerGroup(), dynamic: true},
 };
+function renderLegend(){
+  const rows = [];
+  if (layerOn.liq) rows.push(`<b>土壤液化（大地震時地層變軟下陷的可能）</b><div class="row"><span><i style="background:#55ff00"></i>低</span><span><i style="background:#ffff00"></i>中</span><span><i style="background:#ff0000"></i>高</span><span class="hint">沒顏色＝未列潛勢區</span></div>`);
+  if (layerOn.flood) rows.push(`<b>淹水（一日下 650mm 豪雨，可能淹多深）</b><div class="row">${FLOOD.slice(1).map(([c, t]) => `<span><i style="background:${c}"></i>${t}m</span>`).join('')}</div>`);
+  if (rows.length) rows.push('<span class="hint">點地圖任一處，可查那個位置的等級</span>');
+  $('#lgd').innerHTML = rows.join('');
+  $('#lgd').classList.toggle('show', rows.length > 0);
+}
 const layerOn = JSON.parse(safeGet('tainan_layers') || '{}');
 const layerObj = {};
 function gymMarker(g, strong){
@@ -378,9 +422,12 @@ function setLayer(id, on){
   if (layerObj[id]) on ? layerObj[id].addTo(map) : map.removeLayer(layerObj[id]);
   if (id === 'gym' && on) drawGyms();
   document.querySelector(`.lt[data-id="${id}"]`)?.setAttribute('aria-pressed', on);
+  renderLegend();
 }
 $('#layers').innerHTML = Object.entries(LAYERS).map(([id, l]) =>
-  `<button class="lt" data-id="${id}" title="${l.name}" aria-label="${l.name}" aria-pressed="false">${id === 'gym' ? '<svg class="gymball"><use href="#gymball"/></svg>' : icon(l.ic)}</button>`).join('');
+  `<button class="lt" data-id="${id}" title="${l.name}" aria-label="${l.name}" aria-pressed="false">${id === 'gym' ? '<svg class="gymball"><use href="#gymball"/></svg>' : icon(l.ic)}<small>${l.short}</small></button>`).join('');
+// 地圖上的按鈕不要把點擊傳給地圖（否則地圖的 click 會立刻把圖層面板收起來）
+['.fabs', '#layers', '.mtop', '#lgd'].forEach(sel => { L.DomEvent.disableClickPropagation($(sel)); L.DomEvent.disableScrollPropagation($(sel)); });
 $('#layers').addEventListener('click', e => {
   const b = e.target.closest('.lt'); if (!b) return;
   const on = b.getAttribute('aria-pressed') !== 'true';
@@ -446,7 +493,7 @@ function card(p){
       <span title="建坪／地坪">${icon('i-ruler')}<span class="num">${esc((p.area_str || '').replace(/建 |地 /g, ''))}</span> 坪</span>
       <span title="500m 內道館"><svg class="i" style="width:15px;height:15px"><use href="#gymball"/></svg><span class="num">${p.gyms ? gyms : '–'}</span></span>
       <span title="土壤液化：${esc(p.liq_desc)}"><i class="lv ${p.liq_level || 'unknown'}"></i>液化</span>
-      <span title="淹水：${esc(p.flood_desc)}"><i class="lv ${({low: 'low', none: 'low', high: 'high'})[p.flood_level] || 'unknown'}"></i>淹水</span>
+      <span title="淹水：${esc(p.flood_desc)}"><i class="lv ${({low: 'low', none: 'low', med: 'med', high: 'high'})[p.flood_level] || 'unknown'}"></i>淹水</span>
     </div>
     <div class="c-act">
       ${p.lat && !isGone(p) ? `<button class="ib nav" data-act="nav" title="Google 導航" aria-label="Google 導航">${icon('i-nav')}</button>` : ''}
@@ -526,7 +573,24 @@ $('#btnLayers').onclick = () => {
   $('#layers').classList.toggle('show', on);
   $('#btnLayers').setAttribute('aria-pressed', on);
 };
-map.on('click', () => { $('#layers').classList.remove('show'); $('#btnLayers').setAttribute('aria-pressed', false); });
+map.on('click', async e => {
+  $('#layers').classList.remove('show'); $('#btnLayers').setAttribute('aria-pressed', false);
+  if (!layerOn.liq && !layerOn.flood) return;
+  const {lat, lng} = e.latlng, rows = [];
+  const pop = L.popup({maxWidth: 240}).setLatLng(e.latlng).setContent('查詢中…').openOn(map);
+  if (layerOn.liq){
+    try {
+      const d = await fetch(`${LIQ_URL}/0/query?geometry=${lng},${lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=TYPE&returnGeometry=false&f=json`).then(r => r.json());
+      const t = d.features?.[0]?.attributes?.TYPE;
+      rows.push(`液化：${({LOW: '🟢 低潛勢', MED: '🟡 中潛勢', HIGH: '🔴 高潛勢'})[t] || '⚪ 不在液化潛勢區'}`);
+    } catch(err){ rows.push('液化：查詢失敗，請稍後再試'); }
+  }
+  if (layerOn.flood){
+    const c = await floodAt(lat, lng).catch(() => -1);
+    if (c < 0) rows.push('淹水：資料載入失敗'); else rows.push(`淹水（一日 650mm）：${c ? `${c <= 2 ? '🟡' : '🔴'} 可能淹 ${FLOOD[c][1]} 公尺` : '🟢 不在淹水潛勢區'}`);
+  }
+  pop.setContent(rows.join('<br>'));
+});
 let meLayer;
 $('#btnLocate').onclick = () => {
   if (!navigator.geolocation) return toast('這個瀏覽器不支援定位');
@@ -560,33 +624,65 @@ function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add
 /* ---------- mobile bottom sheet ---------- */
 const isMobile = () => matchMedia('(max-width: 899px)').matches;
 const panel = $('#panel');
+const peekH = () => $('#handle').offsetHeight + $('#sheetHead').offsetHeight + $('.meta-row').offsetHeight + 6;
 function sheetPos(state){
   const h = panel.offsetHeight;
-  return {peek: h - 196, half: Math.round(h * .45), full: 0}[state];
+  return {peek: h - peekH(), half: Math.min(h - peekH(), Math.round(h * .45)), full: 0}[state];
 }
 let sheetState = 'peek';
 function setSheet(state){ sheetState = state; panel.style.setProperty('--sheet-y', sheetPos(state) + 'px'); }
+// 手機底部清單拖拉：用 touch 事件自己處理（上下拖＝拉清單；左右滑＝捲動篩選列；清單捲到最上面再往下拉＝收起）
 (function sheetDrag(){
-  let y0, t0, start;
-  const down = e => {
-    if (!isMobile() || e.target.closest('input,button')) return;
-    y0 = e.clientY; t0 = Date.now(); start = sheetPos(sheetState); panel.classList.add('drag');
-    e.currentTarget.setPointerCapture(e.pointerId);
+  const list = $('#list');
+  let g = null;
+  const start = (x, y, target, fromList) => {
+    if (!isMobile()) return;
+    if (fromList && sheetState === 'full' && list.scrollTop > 0) return;
+    g = {x, y, t: Date.now(), start: sheetPos(sheetState), dir: null, fromList, target};
   };
-  const move = e => { if (y0 == null) return; panel.style.setProperty('--sheet-y', Math.max(0, start + e.clientY - y0) + 'px'); };
-  const up = e => {
-    if (y0 == null) return;
-    const dy = e.clientY - y0, v = dy / Math.max(1, Date.now() - t0), cur = start + dy;
-    panel.classList.remove('drag'); y0 = null;
-    if (Math.abs(dy) < 6) return setSheet(sheetState === 'peek' ? 'half' : sheetState === 'half' ? 'full' : 'half');
-    const order = ['full', 'half', 'peek'];
-    let best = order.reduce((a, s) => Math.abs(sheetPos(s) - cur) < Math.abs(sheetPos(a) - cur) ? s : a, 'peek');
-    if (Math.abs(v) > .5) best = order[Math.min(2, Math.max(0, order.indexOf(sheetState) + (v > 0 ? 1 : -1)))];
+  const move = (x, y, ev) => {
+    if (!g) return;
+    const dx = x - g.x, dy = y - g.y;
+    if (!g.dir){
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      g.dir = Math.abs(dy) > Math.abs(dx) ? 'v' : 'h';
+      // 清單已全開時，往上滑是捲清單，不是拉
+      if (g.dir === 'h' || (g.fromList && sheetState === 'full' && dy < 0)){ g = null; return; }
+      panel.classList.add('drag');
+    }
+    if (ev.cancelable) ev.preventDefault();
+    panel.style.setProperty('--sheet-y', Math.max(0, g.start + dy) + 'px');
+  };
+  const end = y => {
+    if (!g) return;
+    const s = g; g = null; panel.classList.remove('drag');
+    if (!s.dir){ // 點一下：點把手或空白處就切換高度，點按鈕／搜尋框照常
+      if (!s.fromList && !s.target.closest('button,label,.chips')) setSheet(sheetState === 'peek' ? 'half' : sheetState === 'half' ? 'full' : 'half');
+      return;
+    }
+    const dy = y - s.y, v = dy / Math.max(1, Date.now() - s.t), cur = s.start + dy, order = ['full', 'half', 'peek'];
+    let best = order.reduce((a, k) => Math.abs(sheetPos(k) - cur) < Math.abs(sheetPos(a) - cur) ? k : a, 'peek');
+    if (Math.abs(v) > .4) best = order[Math.min(2, Math.max(0, order.indexOf(sheetState) + (v > 0 ? 1 : -1)))];
     setSheet(best);
   };
-  [$('#handle'), $('#sheetHead')].forEach(el => { el.addEventListener('pointerdown', down); el.addEventListener('pointermove', move); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up); });
+  [[$('#handle'), false], [$('#sheetHead'), false], [$('.meta-row'), false], [list, true]].forEach(([el, fromList]) => {
+    el.addEventListener('touchstart', e => start(e.touches[0].clientX, e.touches[0].clientY, e.target, fromList), {passive: true});
+    el.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY, e), {passive: false});
+    el.addEventListener('touchend', e => end(e.changedTouches[0].clientY));
+    el.addEventListener('touchcancel', e => end(e.changedTouches[0].clientY));
+    if (fromList) return;
+    el.addEventListener('mousedown', e => { start(e.clientX, e.clientY, e.target, false); });
+  });
+  addEventListener('mousemove', e => g && move(e.clientX, e.clientY, e));
+  addEventListener('mouseup', e => end(e.clientY));
   addEventListener('resize', () => isMobile() && setSheet(sheetState));
 })();
+
+/* ---------- install ---------- */
+let installEvt = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#btnInstall').hidden = false; });
+addEventListener('appinstalled', () => { $('#btnInstall').hidden = true; toast('已安裝到主畫面'); });
+$('#btnInstall').onclick = async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('#btnInstall').hidden = true; };
 
 /* ---------- load ---------- */
 async function load(fresh){

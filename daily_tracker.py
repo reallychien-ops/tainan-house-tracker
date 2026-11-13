@@ -21,6 +21,7 @@ import urllib.parse
 from http.cookiejar import CookieJar
 
 from curl_cffi import requests as cffi
+from PIL import Image
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROP_FILE = os.path.join(BASE_DIR, "properties.json")
@@ -32,6 +33,8 @@ HEADERS = {"User-Agent": UA}
 SCAN_DISTRICTS = ["北區", "安南區", "永康區", "新化區", "善化區", "新市區", "安定區", "麻豆區", "仁德區"]
 SCAN_FILTER = "透天厝_type/1200-1920_price/0-26_age"
 GYM_RADIUS_M = 500
+# 水利署第三代淹水潛勢「24 小時 650mm」（最嚴重的一日降雨情境），build_flood.py 預先轉成 flood_650.png
+FLOOD_SRC = "水利署第三代淹水潛勢・一日650mm"
 NAME_MUST = re.compile(r"車墅|車庫|雙車|車位")
 NAME_SKIP = re.compile(r"收租|投報|投資|學宿|店面|住店|透店|農舍|小木屋|渡假|度假")
 
@@ -124,6 +127,31 @@ def gyms_near(lat, lng):
     return sorted(out, key=lambda x: x["dist"])
 
 
+_flood = None
+
+
+def flood_check(lat, lng, old_desc=""):
+    global _flood
+    if _flood is None:
+        with open(os.path.join(BASE_DIR, "flood_650.json"), encoding="utf-8") as f:
+            _flood = (json.load(f), Image.open(os.path.join(BASE_DIR, "flood_650.png")))
+    meta, img = _flood
+    (s, w), (n, e) = meta["bounds"]
+    my = lambda la: math.log(math.tan(math.pi / 4 + math.radians(la) / 2))
+    W, H = meta["size"]
+    x, y = int((lng - w) / (e - w) * W), int((my(n) - my(lat)) / (my(n) - my(s)) * H)
+    c = img.getpixel((x, y)) if 0 <= x < W and 0 <= y < H else 0
+    if not c:
+        level, desc = "low", "🟢 一日 650mm 豪雨也不在淹水潛勢區"
+    else:
+        level = "med" if c <= 2 else "high"
+        desc = f"{'🟡' if level == 'med' else '🔴'} 一日 650mm 豪雨可能淹 {meta['levels'][c]} 公尺"
+    desc += "（水利署第三代淹水潛勢，座標以路段估）"
+    if old_desc and not old_desc.startswith("⚪"):
+        desc += f"｜原評估：{old_desc}"
+    return {"flood_level": level, "flood_desc": desc, "flood_src": FLOOD_SRC}
+
+
 # ---------- 新案雷達 ----------
 def scan_list_urls():
     """回傳 [(url, name)]，9 區各自翻頁到沒有新物件為止"""
@@ -131,7 +159,11 @@ def scan_list_urls():
     for d in SCAN_DISTRICTS:
         base = "https://buy.yungching.com.tw/list/" + urllib.parse.quote(f"台南市-{d}_c/{SCAN_FILTER}", safe="/_-")
         for pg in range(1, 6):
-            html = get(base + (f"?pg={pg}" if pg > 1 else ""))
+            try:
+                html = get(base + (f"?pg={pg}" if pg > 1 else ""))
+            except Exception as e:  # 單一區／頁失敗只跳過，不讓整個掃描放棄
+                errors.append(f"新案搜尋 {d} 第 {pg} 頁讀取失敗：{e}")
+                break
             items = []
             for blk in re.findall(r'"@type"\s*:\s*"ItemList".*?"itemListElement"\s*:\s*(\[.*?\])\s*[,}]', html, flags=re.S):
                 try:
@@ -331,7 +363,7 @@ def run_daily_check(scan_new=True):
                 "monthly_pay": f"約 {int(ni['price'] * 0.8 * 10000 * 0.004003):,} 元",
                 "age": ni["age"], "area_str": f"建 {ni['b_ping']} / 地 {ni['l_ping']}",
                 "layout": f"{ni['layout']}｜{ni['floors']}", "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
-                "commute_pogo": "", "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）", "flood_level": "unknown",
+                "commute_pogo": "",
                 "liq_desc": ni["liq_desc"], "liq_level": ni["liq_level"], "temple_desc": ni["temple_desc"],
                 "cadastral_desc": "待查", "summary_note": f"{today} 新案雷達加入：過宮廟 200m 與液化檢核，其餘待看屋確認",
                 "url": url, "lat": ni["lat"], "lng": ni["lng"],
@@ -348,6 +380,11 @@ def run_daily_check(scan_new=True):
                 p["gyms"] = gyms_near(p["lat"], p["lng"])
             except Exception as e:
                 errors.append(f"{p['id']} 道館查詢失敗：{e}")
+        if p.get("flood_src") != FLOOD_SRC and p.get("status") != "已下架":
+            try:
+                p.update(flood_check(p["lat"], p["lng"], p.get("flood_desc", "")))
+            except Exception as e:
+                errors.append(f"{p['id']} 淹水潛勢查詢失敗：{e}")
 
     data["updated_at"] = now_str
     with open(PROP_FILE, "w", encoding="utf-8") as f:
