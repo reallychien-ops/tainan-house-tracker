@@ -1,5 +1,16 @@
 [
   {
+    "timestamp": "2026-11-13 09:00",
+    "checked_count": 72,
+    "new_discovered_count": 0,
+    "changes": [
+      "✅ 全部持平"
+    ],
+    "errors": [
+      "新案搜尋頁讀取失敗：HTTP Error 503: Service Unavailable"
+    ]
+  },
+  {
     "timestamp": "2026-11-13 02:46",
     "checked_count": 72,
     "new_discovered_count": 0,

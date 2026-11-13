@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13 02:46",
+ "updated_at": "2026-11-13 09:00",
  "spreadsheet_id": "1R3vS8mfq9VH-YCfOArEKBaqKMST2HmpqD9MVI66TsW0",
  "spreadsheet_url": "https://docs.google.com/spreadsheets/d/1R3vS8mfq9VH-YCfOArEKBaqKMST2HmpqD9MVI66TsW0/edit",
  "properties": [
@@ -108,8 +108,8 @@
    "layout": "4房2廳4衛｜1~4樓",
    "garage_road": "1F獨立車庫｜大橋/東橋生活圈寬敞街廓",
    "commute_pogo": "走永康交流道或北外環（往南科約15～18分）｜台南市立總圖、大橋車站道館極密集",
-   "flood_desc": "🟢 低風險（12h/24h連500m內都無淹水潛勢）",
-   "flood_level": "none",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（12h/24h連500m內都無淹水潛勢）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 500m內無大廟（最近聖海宮 503m）",
@@ -122,7 +122,7 @@
    "initial_price": 1760.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -173,7 +173,8 @@
      "lng": 120.231925,
      "dist": 471
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P04",
@@ -194,8 +195,8 @@
    "layout": "4房2廳4衛｜1~4樓",
    "garage_road": "併排雙車庫｜社區型透天、大面寬好停雙車",
    "commute_pogo": "走國道8號或台19甲（往南科約15分）｜新化高中、新化老街、演藝廳、體育公園道館極密集",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
-   "flood_level": "none",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）⭐地質最優",
    "liq_level": "low",
    "temple_desc": "🟢 250m內無大廟（最近上帝廟 322m）",
@@ -208,7 +209,7 @@
    "initial_price": 1688.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -253,7 +254,8 @@
      "lng": 120.309927,
      "dist": 481
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P05",
@@ -274,8 +276,8 @@
    "layout": "4房2廳4衛｜1~4樓",
    "garage_road": "大面寬雙車庫｜24h警衛管理、代收包裹、免追垃圾車",
    "commute_pogo": "南科核心區（往南科僅 8～10 分）｜善化火車站、中山路商圈、善化運動公園道館多",
-   "flood_desc": "🟢 極低風險（500m範圍內完全無淹水潛勢）",
-   "flood_level": "none",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 極低風險（500m範圍內完全無淹水潛勢）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟡 距普濟宮約 209m（>200m，隔街區）",
@@ -288,7 +290,7 @@
    "initial_price": 1520.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -315,7 +317,8 @@
      "lng": 120.285734,
      "dist": 342
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P06",
@@ -336,7 +339,7 @@
    "layout": "5房2廳4衛｜1~4樓",
    "garage_road": "雙車庫｜24h物業管理、代收包裹、免追垃圾車(管理費1200/月)",
    "commute_pogo": "離台積電/南科僅 5～8 分鐘｜鄰近善化火車站與善化啤酒廠，社區型環境單純",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
@@ -350,7 +353,7 @@
    "initial_price": 1558.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -371,7 +374,8 @@
      "lng": 120.315835,
      "dist": 160
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P07",
@@ -392,7 +396,7 @@
    "layout": "5房2廳5衛(多套房)｜1~4樓",
    "garage_road": "雙車庫｜貝森朵夫社區管理、傳統格局",
    "commute_pogo": "離台積電/南科僅 5～8 分鐘｜善化車站周邊生活圈",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
@@ -406,7 +410,7 @@
    "initial_price": 1680.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -427,7 +431,8 @@
      "lng": 120.315835,
      "dist": 233
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P08",
@@ -448,8 +453,8 @@
    "layout": "5房2廳3衛｜1~4樓",
    "garage_road": "大車庫別墅｜30.25大地坪、4.1年超輕屋齡免整理",
    "commute_pogo": "位新市與新化交界，近國8與南科（約10～12分）｜可同時享受新市與新化雙商圈",
-   "flood_desc": "🟢 低風險（12h/24h連500m內都無淹水潛勢）",
-   "flood_level": "none",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（12h/24h連500m內都無淹水潛勢）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 500m內無大廟（最近知義天后宮 543m）",
@@ -462,7 +467,7 @@
    "initial_price": 1898.0,
    "price_trend": "📉降價100.0萬(原1898萬)",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -487,7 +492,8 @@
      "lng": 120.311635,
      "dist": 369
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P09",
@@ -508,7 +514,7 @@
    "layout": "4房3廳3衛｜1~4樓",
    "garage_road": "獨立車庫別墅｜格局方正、三面採光",
    "commute_pogo": "近南科園區與國1安定交流道（往南科約 6～8 分）｜南安國小旁（聚落道館較少）",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區，7年新建築耐震較佳）",
    "liq_level": "high",
@@ -522,7 +528,7 @@
    "initial_price": 1480.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -555,7 +561,8 @@
      "lng": 120.227239,
      "dist": 380
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P10",
@@ -576,8 +583,8 @@
    "layout": "5房3廳3衛｜1~3樓+B1",
    "garage_road": "地下室車庫可停 3 台車｜63.25坪超大地坪渡假別墅",
    "commute_pogo": "近國1麻豆交流道與台19/84（往南科約 18 分）｜近麻豆市區、真理大學、總爺藝文中心道館群",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
-   "flood_level": "low",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_level": "med",
    "liq_desc": "🟢 低潛勢（綠區）⭐地質優",
    "liq_level": "low",
    "temple_desc": "🟢 750m內無大廟（最近潮音寺 779m）",
@@ -590,7 +597,7 @@
    "initial_price": 1298.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -611,7 +618,8 @@
      "lng": 120.224521,
      "dist": 366
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P11",
@@ -632,7 +640,7 @@
    "layout": "4房2廳4衛｜1~3樓",
    "garage_road": "傳統格局獨立車庫透天｜33.03坪大地坪",
    "commute_pogo": "近86快速道路與國1仁德系統（往南科約 22 分）｜緊鄰東區商圈與仁德運動公園",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
@@ -646,7 +654,7 @@
    "initial_price": 1686.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -679,7 +687,8 @@
      "lng": 120.255011,
      "dist": 333
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P12",
@@ -700,7 +709,7 @@
    "layout": "4房2廳3衛｜1~4樓",
    "garage_road": "1F獨立車庫｜近北安橋與好市多商圈",
    "commute_pogo": "近北外環中華北路匝道（往南科約 20 分）｜鄭子寮公園群與好市多商圈道館多",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
@@ -714,7 +723,7 @@
    "initial_price": 1688.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -765,7 +774,8 @@
      "lng": 120.19866,
      "dist": 499
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P13",
@@ -786,7 +796,7 @@
    "layout": "5房2廳4衛(雙套房)｜1~4樓",
    "garage_road": "可停雙車（面寬約4.2米）｜34坪大地坪傳統格局",
    "commute_pogo": "近北外環與國8（往南科約 15～18 分）｜近安和商圈、全聯與商60副都心",
-   "flood_desc": "🟢 低風險（基地非直接位於淹水潛勢區）",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險（基地非直接位於淹水潛勢區）",
    "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
@@ -800,7 +810,7 @@
    "initial_price": 1888.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -845,7 +855,8 @@
      "lng": 120.214396,
      "dist": 381
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P14",
@@ -866,8 +877,8 @@
    "layout": "4房2廳4衛｜1~3樓",
    "garage_road": "前後雙車位設計｜社區型透天、環境單純",
    "commute_pogo": "離南科僅 6～10 分鐘｜大社國小旁（聚落安靜，道館需往新市市區）",
-   "flood_desc": "🟢 極低風險（500m範圍內完全無淹水潛勢）",
-   "flood_level": "none",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 極低風險（500m範圍內完全無淹水潛勢）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "⚠️ 大社庄內距聖佛宮約 124m（需確認社區位置）",
@@ -880,7 +891,7 @@
    "initial_price": 1335.0,
    "price_trend": "持平",
    "status": "上架追蹤中",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -919,7 +930,8 @@
      "lng": 120.317531,
      "dist": 434
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P15",
@@ -1069,8 +1081,8 @@
    "layout": "5房2廳4衛｜1~4樓",
    "garage_road": "1F車庫",
    "commute_pogo": "近仁德交流道",
-   "flood_desc": "🔴 高風險（直接位於350/400/650mm淹水潛勢區）",
-   "flood_level": "high",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）｜原評估：🔴 高風險（直接位於350/400/650mm淹水潛勢區）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "⚠️ 距清寧代天府僅 166m",
@@ -1083,7 +1095,7 @@
    "initial_price": 1698.0,
    "price_trend": "持平",
    "status": "避雷對照/不追蹤",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -1152,7 +1164,8 @@
      "lng": 120.25242,
      "dist": 432
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P19",
@@ -1173,7 +1186,7 @@
    "layout": "4房2廳5衛｜1~4樓",
    "garage_road": "臨8米路邊間騎樓停車",
    "commute_pogo": "麻豆國中與公11公園旁",
-   "flood_desc": "🟢 低風險",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）｜原評估：🟢 低風險",
    "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
@@ -1187,7 +1200,7 @@
    "initial_price": 1788.0,
    "price_trend": "持平",
    "status": "避雷對照/不追蹤",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "added_at": "2026-11-10",
    "price_history": [
     {
@@ -1238,7 +1251,8 @@
      "lng": 120.255005,
      "dist": 459
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P20",
@@ -1289,7 +1303,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安豐五街",
@@ -1313,8 +1327,8 @@
    "layout": "4房(室)2廳4衛｜1~5/5樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保和宮 約 242m，座標以路段估）",
@@ -1372,7 +1386,8 @@
      "lng": 120.21057,
      "dist": 469
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P22",
@@ -1380,7 +1395,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區公學路四段",
@@ -1404,8 +1419,8 @@
    "layout": "5房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 南天宮 約 486m，座標以路段估）",
@@ -1439,7 +1454,8 @@
      "lng": 120.17518,
      "dist": 484
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P23",
@@ -1447,7 +1463,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區城安西街",
@@ -1471,8 +1487,8 @@
    "layout": "5房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈泉寺 約 1998m，座標以路段估）",
@@ -1506,7 +1522,8 @@
      "lng": 120.131351,
      "dist": 343
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P24",
@@ -1514,7 +1531,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區州南八街",
@@ -1538,8 +1555,8 @@
    "layout": "5房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 佛光山台南福國寺 約 347m，座標以路段估）",
@@ -1597,7 +1614,8 @@
      "lng": 120.218213,
      "dist": 473
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P25",
@@ -1605,7 +1623,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區城安三街",
@@ -1629,8 +1647,8 @@
    "layout": "5房(室)2廳6衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈泉寺 約 1751m，座標以路段估）",
@@ -1664,7 +1682,8 @@
      "lng": 120.127349,
      "dist": 467
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P26",
@@ -1672,7 +1691,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -1696,8 +1715,8 @@
    "layout": "5房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -1761,7 +1780,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P27",
@@ -1769,7 +1789,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區環館北路",
@@ -1793,8 +1813,8 @@
    "layout": "3房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 和濟宮 約 1354m，座標以路段估）",
@@ -1828,7 +1848,8 @@
      "lng": 120.236575,
      "dist": 357
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P28",
@@ -1836,7 +1857,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -1860,8 +1881,8 @@
    "layout": "4房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -1925,7 +1946,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P29",
@@ -1933,7 +1955,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -1957,8 +1979,8 @@
    "layout": "5房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -2022,7 +2044,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P30",
@@ -2030,7 +2053,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區城西街二段",
@@ -2054,8 +2077,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈泉寺 約 2598m，座標以路段估）",
@@ -2089,7 +2112,8 @@
      "lng": 120.11944,
      "dist": 493
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P31",
@@ -2097,7 +2121,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區長溪路三段",
@@ -2121,8 +2145,8 @@
    "layout": "4房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 代天府 約 373m，座標以路段估）",
@@ -2150,7 +2174,8 @@
      "lng": 120.208013,
      "dist": 363
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P32",
@@ -2158,7 +2183,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區城西街二段",
@@ -2182,8 +2207,8 @@
    "layout": "4房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈泉寺 約 2598m，座標以路段估）",
@@ -2217,7 +2242,8 @@
      "lng": 120.11944,
      "dist": 493
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P33",
@@ -2225,7 +2251,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -2249,8 +2275,8 @@
    "layout": "4房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -2314,7 +2340,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P34",
@@ -2322,7 +2349,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區公學路五段",
@@ -2346,8 +2373,8 @@
    "layout": "6房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 南天宮 約 628m，座標以路段估）",
@@ -2375,7 +2402,8 @@
      "lng": 120.172375,
      "dist": 372
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P35",
@@ -2383,7 +2411,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區怡安路一段",
@@ -2407,8 +2435,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 清慈宮 約 442m，座標以路段估）",
@@ -2442,7 +2470,8 @@
      "lng": 120.214396,
      "dist": 494
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P36",
@@ -2450,7 +2479,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區海佃路二段",
@@ -2474,8 +2503,8 @@
    "layout": "5房(室)2廳3衛｜4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🔴 一日 650mm 豪雨可能淹 1.0-2.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "high",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 文武聖廟 約 1177m，座標以路段估）",
@@ -2545,7 +2574,8 @@
      "lng": 120.187608,
      "dist": 439
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P37",
@@ -2553,7 +2583,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -2577,8 +2607,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -2642,7 +2672,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P38",
@@ -2650,7 +2681,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -2674,8 +2705,8 @@
    "layout": "4房(室)2廳4衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -2739,7 +2770,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P39",
@@ -2747,7 +2779,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區長和路四段",
@@ -2771,8 +2803,8 @@
    "layout": "4房(室)3廳4衛\n另加蓋1房(室)1廳--衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 北安路聖后宮 約 486m，座標以路段估）",
@@ -2806,7 +2838,8 @@
      "lng": 120.209168,
      "dist": 484
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P40",
@@ -2814,7 +2847,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區城西街二段",
@@ -2838,8 +2871,8 @@
    "layout": "4房(室)2廳3衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈泉寺 約 2598m，座標以路段估）",
@@ -2873,7 +2906,8 @@
      "lng": 120.11944,
      "dist": 493
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P41",
@@ -2881,7 +2915,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區長溪路三段",
@@ -2905,8 +2939,8 @@
    "layout": "6房(室)2廳3衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 代天府 約 373m，座標以路段估）",
@@ -2934,7 +2968,8 @@
      "lng": 120.208013,
      "dist": 363
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P42",
@@ -2942,7 +2977,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安南區安中路四段",
@@ -2966,8 +3001,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 本淵寮朝興宮 約 200m，座標以路段估）",
@@ -3031,7 +3066,8 @@
      "lng": 120.177472,
      "dist": 489
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P43",
@@ -3039,7 +3075,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "永康區廣興街",
@@ -3063,8 +3099,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 中興壇 約 248m，座標以路段估）",
@@ -3104,7 +3140,8 @@
      "lng": 120.274774,
      "dist": 498
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P44",
@@ -3112,7 +3149,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "永康區自強路",
@@ -3136,8 +3173,8 @@
    "layout": "5房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 二王廟 約 527m，座標以路段估）",
@@ -3153,7 +3190,8 @@
      "lng": 120.244642,
      "dist": 431
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P45",
@@ -3161,7 +3199,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "永康區和平路",
@@ -3185,8 +3223,8 @@
    "layout": "4房(室)3廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 順靈殿 約 527m，座標以路段估）",
@@ -3214,7 +3252,8 @@
      "lng": 120.26619,
      "dist": 472
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P46",
@@ -3222,7 +3261,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "永康區大同街",
@@ -3246,8 +3285,8 @@
    "layout": "5房(室)3廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 國聖宮 約 220m，座標以路段估）",
@@ -3287,7 +3326,8 @@
      "lng": 120.267497,
      "dist": 433
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P47",
@@ -3295,7 +3335,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "永康區富強路一段",
@@ -3319,8 +3359,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 國聖宮 約 573m，座標以路段估）",
@@ -3354,7 +3394,8 @@
      "lng": 120.270211,
      "dist": 408
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P48",
@@ -3362,7 +3403,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新化區崙子頂",
@@ -3386,8 +3427,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 福德祠 約 455m，座標以路段估）",
@@ -3409,7 +3450,8 @@
      "lng": 120.288955,
      "dist": 241
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P49",
@@ -3417,7 +3459,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區東勢寮",
@@ -3441,8 +3483,8 @@
    "layout": "4房(室)2廳4衛｜1~5/5樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保安宮 約 222m，座標以路段估）",
@@ -3458,7 +3500,8 @@
      "lng": 120.324885,
      "dist": 200
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P50",
@@ -3466,7 +3509,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區興華路",
@@ -3490,8 +3533,8 @@
    "layout": "5房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 瓦磘興安宮 約 502m，座標以路段估）",
@@ -3513,7 +3556,8 @@
      "lng": 120.301158,
      "dist": 372
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P51",
@@ -3521,7 +3565,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區小新營",
@@ -3545,8 +3589,8 @@
    "layout": "4房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 泰安宮 約 553m，座標以路段估）",
@@ -3580,7 +3624,8 @@
      "lng": 120.313448,
      "dist": 449
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P52",
@@ -3588,7 +3633,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區西拉雅大道",
@@ -3612,8 +3657,8 @@
    "layout": "4房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 營頭福德爺廟 約 876m，座標以路段估）",
@@ -3659,7 +3704,8 @@
      "lng": 120.301277,
      "dist": 464
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P53",
@@ -3667,7 +3713,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區茄拔",
@@ -3691,8 +3737,8 @@
    "layout": "4房(室)2廳3衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 茄拔天后宮 約 630m，座標以路段估）",
@@ -3714,7 +3760,8 @@
      "lng": 120.323634,
      "dist": 490
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P54",
@@ -3722,7 +3769,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區善新西路",
@@ -3746,8 +3793,8 @@
    "layout": "5房(室)2廳6衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 糖廍角民安宮 約 879m，座標以路段估）",
@@ -3781,7 +3828,8 @@
      "lng": 120.30714,
      "dist": 458
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P55",
@@ -3789,7 +3837,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區成功路",
@@ -3813,8 +3861,8 @@
    "layout": "5房(室)2廳6衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 泰安宮 約 328m，座標以路段估）",
@@ -3830,7 +3878,8 @@
      "lng": 120.320671,
      "dist": 476
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P56",
@@ -3838,7 +3887,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區成功路",
@@ -3862,8 +3911,8 @@
    "layout": "4房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 泰安宮 約 328m，座標以路段估）",
@@ -3879,7 +3928,8 @@
      "lng": 120.320671,
      "dist": 476
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P57",
@@ -3887,7 +3937,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區小新營",
@@ -3911,8 +3961,8 @@
    "layout": "5房(室)2廳4衛｜1~5/5樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 祖師廟 約 554m，座標以路段估）",
@@ -3946,7 +3996,8 @@
      "lng": 120.313448,
      "dist": 412
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P58",
@@ -3954,7 +4005,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區東勢寮",
@@ -3978,8 +4029,8 @@
    "layout": "4房(室)2廳4衛｜1~5/5樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保安宮 約 222m，座標以路段估）",
@@ -3995,7 +4046,8 @@
      "lng": 120.324885,
      "dist": 200
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P59",
@@ -4003,7 +4055,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區茄拔",
@@ -4027,8 +4079,8 @@
    "layout": "4房(室)2廳3衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 茄拔天后宮 約 630m，座標以路段估）",
@@ -4050,7 +4102,8 @@
      "lng": 120.323634,
      "dist": 490
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P60",
@@ -4058,7 +4111,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區東勢寮",
@@ -4082,8 +4135,8 @@
    "layout": "4房(室)2廳4衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保安宮 約 222m，座標以路段估）",
@@ -4099,7 +4152,8 @@
      "lng": 120.324885,
      "dist": 200
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P61",
@@ -4107,7 +4161,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "善化區健康街",
@@ -4131,8 +4185,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 文聖廟 約 374m，座標以路段估）",
@@ -4172,7 +4226,8 @@
      "lng": 120.302735,
      "dist": 482
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P62",
@@ -4180,7 +4235,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區大營",
@@ -4204,8 +4259,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈昭宮 約 327m，座標以路段估）",
@@ -4239,7 +4294,8 @@
      "lng": 120.311096,
      "dist": 368
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P63",
@@ -4247,7 +4303,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區大社",
@@ -4271,8 +4327,8 @@
    "layout": "4房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 聖佛宮 約 595m，座標以路段估）",
@@ -4294,7 +4350,8 @@
      "lng": 120.318875,
      "dist": 485
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P64",
@@ -4302,7 +4359,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區西拉雅大道",
@@ -4326,8 +4383,8 @@
    "layout": "4房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 營頭福德爺廟 約 794m，座標以路段估）",
@@ -4373,7 +4430,8 @@
      "lng": 120.310072,
      "dist": 491
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P65",
@@ -4381,7 +4439,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區大社",
@@ -4405,8 +4463,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟢 低潛勢（綠區）",
    "liq_level": "low",
    "temple_desc": "🟢 200m內無登記宮廟（最近 聖佛宮 約 595m，座標以路段估）",
@@ -4428,7 +4486,8 @@
      "lng": 120.318875,
      "dist": 485
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P66",
@@ -4436,7 +4495,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區中山路",
@@ -4460,8 +4519,8 @@
    "layout": "5房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 豐榮北極殿 約 389m，座標以路段估）",
@@ -4519,7 +4578,8 @@
      "lng": 120.300427,
      "dist": 473
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P67",
@@ -4527,7 +4587,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "新市區大營",
@@ -4551,8 +4611,8 @@
    "layout": "4房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 靈昭宮 約 327m，座標以路段估）",
@@ -4586,7 +4646,8 @@
      "lng": 120.311096,
      "dist": 368
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P68",
@@ -4594,7 +4655,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安定區管寮",
@@ -4618,8 +4679,8 @@
    "layout": "5房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 聖安宮 約 319m，座標以路段估）",
@@ -4647,7 +4708,8 @@
      "lng": 120.220158,
      "dist": 308
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P69",
@@ -4655,7 +4717,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安定區新吉",
@@ -4679,8 +4741,8 @@
    "layout": "5房(室)3廳6衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保安宮 約 247m，座標以路段估）",
@@ -4714,7 +4776,8 @@
      "lng": 120.216647,
      "dist": 415
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P70",
@@ -4722,7 +4785,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "安定區許中營",
@@ -4746,8 +4809,8 @@
    "layout": "4房(室)2廳5衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 順天宮 約 249m，座標以路段估）",
@@ -4793,7 +4856,8 @@
      "lng": 120.244711,
      "dist": 393
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P71",
@@ -4801,7 +4865,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "麻豆區朝天一街",
@@ -4825,8 +4889,8 @@
    "layout": "4房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 朝天宮 約 317m，座標以路段估）",
@@ -4842,7 +4906,8 @@
      "lng": 120.219524,
      "dist": 404
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P72",
@@ -4850,7 +4915,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "麻豆區柚安路二段",
@@ -4874,8 +4939,8 @@
    "layout": "5房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 麻豆口保安宮 約 283m，座標以路段估）",
@@ -4891,7 +4956,8 @@
      "lng": 120.216748,
      "dist": 285
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P73",
@@ -4899,7 +4965,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "麻豆區朝天一街",
@@ -4923,8 +4989,8 @@
    "layout": "4房(室)2廳5衛｜1~3/3樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 朝天宮 約 317m，座標以路段估）",
@@ -4940,7 +5006,8 @@
      "lng": 120.219524,
      "dist": 404
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P74",
@@ -4948,7 +5015,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "麻豆區港子尾",
@@ -4972,8 +5039,8 @@
    "layout": "4房(室)2廳3衛｜1~2/2樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.5-1.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 保玄宮 約 459m，座標以路段估）",
@@ -4995,7 +5062,8 @@
      "lng": 120.205987,
      "dist": 324
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P75",
@@ -5003,7 +5071,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "仁德區文華路三段",
@@ -5027,8 +5095,8 @@
    "layout": "6房(室)2廳7衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "low",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 北極殿 約 257m，座標以路段估）",
@@ -5068,7 +5136,8 @@
      "lng": 120.236416,
      "dist": 462
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P76",
@@ -5076,7 +5145,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "仁德區土庫三街",
@@ -5100,8 +5169,8 @@
    "layout": "4房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🟡 一日 650mm 豪雨可能淹 0.3-0.5 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "med",
    "liq_desc": "🟡 中潛勢（黃區）",
    "liq_level": "med",
    "temple_desc": "🟢 200m內無登記宮廟（最近 土庫天后宮 約 413m，座標以路段估）",
@@ -5147,7 +5216,8 @@
      "lng": 120.263557,
      "dist": 446
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P77",
@@ -5155,7 +5225,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "仁德區中正路二段",
@@ -5179,8 +5249,8 @@
    "layout": "4房(室)2廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🔴 一日 650mm 豪雨可能淹 1.0-2.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "high",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 三聖宮 約 313m，座標以路段估）",
@@ -5202,7 +5272,8 @@
      "lng": 120.250187,
      "dist": 420
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   },
   {
    "id": "P78",
@@ -5210,7 +5281,7 @@
    "status": "上架追蹤中",
    "price_trend": "🆕新上架",
    "added_at": "2026-11-13",
-   "last_checked": "2026-11-13 02:46",
+   "last_checked": "2026-11-13 09:00",
    "rank": "🆕新案雷達",
    "zone_type": "自動巡檢新案",
    "district_road": "仁德區中正路二段",
@@ -5234,8 +5305,8 @@
    "layout": "4房(室)3廳3衛｜1~4/4樓",
    "garage_road": "待查（標題含車庫/車墅才會被搜尋到）",
    "commute_pogo": "",
-   "flood_desc": "⚪ 未自動檢核（請開淹水圖層看）",
-   "flood_level": "unknown",
+   "flood_desc": "🔴 一日 650mm 豪雨可能淹 1.0-2.0 公尺（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_level": "high",
    "liq_desc": "🔴 高潛勢（紅區）",
    "liq_level": "high",
    "temple_desc": "🟢 200m內無登記宮廟（最近 三聖宮 約 313m，座標以路段估）",
@@ -5257,7 +5328,8 @@
      "lng": 120.250187,
      "dist": 420
     }
-   ]
+   ],
+   "flood_src": "水利署第三代淹水潛勢・一日650mm"
   }
  ],
  "temples": [
