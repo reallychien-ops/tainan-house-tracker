@@ -294,6 +294,10 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
   <header><svg class="i"><use href="#i-bell"/></svg><h2>每日巡檢紀錄</h2><button class="ib" data-close title="關閉" aria-label="關閉"><svg class="i"><use href="#i-x"/></svg></button></header>
   <div id="logBody"></div>
 </div></div>
+<div class="overlay" id="instOverlay"><div class="modal" role="dialog" aria-label="安裝檢查">
+  <header><svg class="i"><use href="#i-install"/></svg><h2>安裝到主畫面</h2><button class="ib" data-close title="關閉" aria-label="關閉"><svg class="i"><use href="#i-x"/></svg></button></header>
+  <div id="instBody" style="padding:4px 18px 18px;font-size:14px;line-height:1.7"></div>
+</div></div>
 <div class="toast" id="toast"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -373,7 +377,7 @@ const LiqLayer = L.GridLayer.extend({createTile(c){
   t.alt = ''; return t;
 }});
 // 水利署第三代淹水潛勢（24 小時 650mm），台南範圍預先轉成 flood_650.png（build_flood.py），不即時連水利署（有防爬蟲驗證碼）
-const FLOOD = [null, ['#fef604', '0.3–0.5'], ['#febf08', '0.5–1'], ['#fb7800', '1–2'], ['#fc0200', '2–3'], ['#b10203', '>3']];
+const FLOOD = [null, ['#9fd8ff', '0.3–0.5'], ['#4fb0f5', '0.5–1'], ['#1f7fe0', '1–2'], ['#1847b8', '2–3'], ['#170f73', '>3']];
 let floodData = null;
 const loadFlood = () => floodData ||= fetch('flood_650.json').then(r => r.json()).then(m => new Promise((ok, bad) => {
   const img = new Image(); img.onload = () => ok({...m, img}); img.onerror = bad; img.src = 'flood_650.png';
@@ -396,19 +400,11 @@ const LAYERS = {
   liq: {ic: 'i-wave', short: '液化', name: '土壤液化潛勢（地調所 2026）', make: () => new LiqLayer({opacity: .5})},
   flood: {ic: 'i-drop', short: '淹水', name: '淹水潛勢（水利署，一日 650mm 豪雨）', make: () => {
     const g = L.layerGroup();
-    loadFlood().then(m => L.imageOverlay('flood_650.png', m.bounds, {opacity: .6, interactive: false, className: 'flood-img'}).addTo(g))
+    loadFlood().then(m => L.imageOverlay('flood_650.png', m.bounds, {opacity: .7, interactive: false, className: 'flood-img'}).addTo(g))
       .catch(() => toast('淹水資料載入失敗'));
     return g;
   }},
-  temple: {ic: 'i-temple', short: '宮廟', name: '登記宮廟＋150m 範圍', make: () => {
-    const g = L.layerGroup();
-    (data.temples || []).forEach(t => {
-      L.circle([t.lat, t.lng], {radius: 150, color: '#ef4444', weight: .8, fillOpacity: .08, interactive: false}).addTo(g);
-      L.circleMarker([t.lat, t.lng], {radius: 3.5, color: '#b91c1c', weight: 1, fillColor: '#ef4444', fillOpacity: .9})
-        .bindPopup(`<b>${esc(t.name)}</b><br>${esc(t.deity || '')}<br><span style="color:#64748b">${esc(t.addr || '')}</span>`).addTo(g);
-    });
-    return g;
-  }},
+  temple: {ic: 'i-temple', short: '宮廟', name: '物件 500m 內登記宮廟＋150m 範圍', make: () => L.layerGroup(), dynamic: true},
   sect: {ic: 'i-parcel', short: '地籍', name: '地籍段界（國土測繪中心）', make: () => L.tileLayer.wms('https://wms.nlsc.gov.tw/wms', {layers: 'LANDSECT', format: 'image/png', transparent: true, opacity: .65})},
   gym: {ic: 'gymball', short: '道館', name: '物件 500m 內道館', make: () => L.layerGroup(), dynamic: true},
 };
@@ -438,11 +434,22 @@ function drawGyms(){
     gymMarker({...x, dist: null}).addTo(g);
   }));
 }
+function drawTemples(){
+  const g = layerObj.temple; if (!g) return;
+  g.clearLayers();
+  const homes = visible().filter(p => !isGone(p) && p.lat).map(p => L.latLng(p.lat, p.lng));
+  (data.temples || []).filter(t => homes.some(h => h.distanceTo([t.lat, t.lng]) <= 500)).forEach(t => {
+    L.circle([t.lat, t.lng], {radius: 150, color: '#ef4444', weight: .8, fillOpacity: .08, interactive: false}).addTo(g);
+    L.circleMarker([t.lat, t.lng], {radius: 3.5, color: '#b91c1c', weight: 1, fillColor: '#ef4444', fillOpacity: .9})
+      .bindPopup(`<b>${esc(t.name)}</b><br>${esc(t.deity || '')}<br><span style="color:#64748b">${esc(t.addr || '')}</span>`).addTo(g);
+  });
+}
 function setLayer(id, on){
   layerOn[id] = on; safeSet('tainan_layers', JSON.stringify(layerOn));
   if (on && !layerObj[id]) layerObj[id] = LAYERS[id].make();
   if (layerObj[id]) on ? layerObj[id].addTo(map) : map.removeLayer(layerObj[id]);
   if (id === 'gym' && on) drawGyms();
+  if (id === 'temple' && on) drawTemples();
   document.querySelector(`.lt[data-id="${id}"]`)?.setAttribute('aria-pressed', on);
   renderLegend();
 }
@@ -472,7 +479,7 @@ function drawMarkers(){
       .on('click', () => select(p.id, true, false));
     m.addTo(markers); markerById[p.id] = m;
   });
-  drawGyms();
+  drawGyms(); drawTemples();
 }
 
 function select(id, scrollList = true, pan = true){
@@ -487,14 +494,15 @@ function select(id, scrollList = true, pan = true){
   if (!p || !p.lat) return;
   L.circle([p.lat, p.lng], {radius: 500, color: '#7c3aed', weight: 1.5, dashArray: '5 6', fillColor: '#7c3aed', fillOpacity: .05, interactive: false}).addTo(focusLayer);
   (p.gyms || []).forEach(g => gymMarker(g, true).addTo(focusLayer));
-  if (scrollList && isMobile()) setSheet('full');
   if (pan){
     const z = Math.max(map.getZoom(), 15);
     // 手機：清單蓋住地圖下半，把物件往上移到看得到的地方
     map.flyTo(map.unproject(map.project([p.lat, p.lng], z).add([0, isMobile() ? (panel.offsetHeight - sheetPos(sheetState)) / 2 : 0]), z), z, {duration: .6});
   }
   if (scrollList && card){
-    setTimeout(() => card.scrollIntoView({behavior: 'smooth', block: 'start'}), isMobile() ? 320 : 0);
+    const list = $('#list');
+    if (isMobile()) list.scrollTop += card.getBoundingClientRect().top - list.getBoundingClientRect().top - 4; // 清單保持收起，拉上來就是這間
+    else card.scrollIntoView({behavior: 'smooth', block: 'start'});
   }
 }
 
@@ -710,8 +718,30 @@ function setSheet(state){ sheetState = state; panel.style.setProperty('--sheet-y
 /* ---------- install ---------- */
 let installEvt = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#btnInstall').hidden = false; });
-addEventListener('appinstalled', () => { $('#btnInstall').hidden = true; toast('已安裝到主畫面'); });
-$('#btnInstall').onclick = async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('#btnInstall').hidden = true; };
+addEventListener('appinstalled', () => { $('#btnInstall').hidden = true; installEvt = null; toast('已安裝到主畫面'); });
+// 手機上還沒裝的話一直顯示安裝鈕；Chrome 不給安裝時，按下去顯示檢查結果，方便截圖找原因
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (isMobile() && !standalone) $('#btnInstall').hidden = false;
+$('#btnInstall').onclick = async () => {
+  if (installEvt){ installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('#btnInstall').hidden = true; return; }
+  const ua = navigator.userAgent, chrome = (ua.match(/Chrome\/(\d+)/) || [])[1];
+  const inApp = /; wv\)|Line\/|FBAN|FBAV|Instagram|Telegram|MicroMessenger/.test(ua);
+  let man = '讀取中';
+  try { const r = await fetch('manifest.webmanifest', {cache: 'no-store'}); man = r.ok ? `正常（${(await r.json()).name}）` : `讀不到（HTTP ${r.status}）`; } catch(e){ man = '讀不到：' + e.message; }
+  const rows = [
+    ['網址', location.host === 'reallychien-ops.github.io' ? '正確' : `⚠️ ${location.host}（要用 reallychien-ops.github.io）`],
+    ['瀏覽器', inApp ? '⚠️ App 內建瀏覽器（不能安裝）' : /SamsungBrowser/.test(ua) ? 'Samsung 網際網路' : chrome ? `Chrome ${chrome}` : '其他'],
+    ['安裝設定檔', man],
+    ['背景程式', navigator.serviceWorker?.controller ? '運作中' : '還沒啟動（重新整理一次再試）'],
+    ['Chrome 允許安裝', '否（沒有收到安裝通知）'],
+  ];
+  $('#instBody').innerHTML = `<p style="margin:0 0 8px">Chrome 目前沒有給這個網頁「安裝」。檢查結果：</p>
+    ${rows.map(([k, v]) => `<div><b>${k}</b>：${esc(v)}</div>`).join('')}
+    <p style="margin:10px 0 0;color:var(--muted)">${inApp ? '請按右上角選單「用 Chrome 開啟」，再按一次這顆按鈕。' : '可以先重新整理、等 10 秒再按一次；還是不行就把這個畫面截圖傳給 Claude。'}</p>
+    <p style="margin:6px 0 0;color:var(--muted);font-size:12px;word-break:break-all">${esc(ua)}</p>`;
+  $('#instOverlay').classList.add('show');
+};
+$('#instOverlay').addEventListener('click', e => { if (e.target === e.currentTarget || e.target.closest('[data-close]')) e.currentTarget.classList.remove('show'); });
 
 /* ---------- load ---------- */
 async function load(fresh){

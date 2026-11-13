@@ -22,7 +22,7 @@ SRC_URL = "https://gic.wra.gov.tw/gis/gic/API/Google/DownLoad.aspx?fname=flood_6
 SHP_IN_ARCHIVE = "Flood_650mm_24HR/Flood_650mm_24HR"
 CITY = "臺南市"
 PX_M = 20  # 每像素幾公尺（Mercator 公尺，台南約等於地面 18m）
-COLORS = [(0, 0, 0), (254, 246, 4), (254, 191, 8), (251, 120, 0), (252, 2, 0), (177, 2, 3)]
+COLORS = [(0, 0, 0), (159, 216, 255), (79, 176, 245), (31, 127, 224), (24, 71, 184), (23, 15, 115)]  # 藍色系，和液化的綠黃紅分開
 
 
 def tm2_to_wgs84(x, y):
