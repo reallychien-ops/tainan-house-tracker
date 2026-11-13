@@ -717,7 +717,9 @@ function setSheet(state){ sheetState = state; panel.style.setProperty('--sheet-y
 
 /* ---------- install ---------- */
 let installEvt = null;
-addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#btnInstall').hidden = false; });
+const t0 = Date.now(); let tapped = false;
+addEventListener('pointerdown', () => tapped = true, {once: true});
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; $('#btnInstall').hidden = false; if (isMobile()) toast('現在可以安裝了：按右上角下載鈕'); });
 addEventListener('appinstalled', () => { $('#btnInstall').hidden = true; installEvt = null; toast('已安裝到主畫面'); });
 // 手機上還沒裝的話一直顯示安裝鈕；Chrome 不給安裝時，按下去顯示檢查結果，方便截圖找原因
 const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
@@ -733,11 +735,12 @@ $('#btnInstall').onclick = async () => {
     ['瀏覽器', inApp ? '⚠️ App 內建瀏覽器（不能安裝）' : /SamsungBrowser/.test(ua) ? 'Samsung 網際網路' : chrome ? `Chrome ${chrome}` : '其他'],
     ['安裝設定檔', man],
     ['背景程式', navigator.serviceWorker?.controller ? '運作中' : '還沒啟動（重新整理一次再試）'],
-    ['Chrome 允許安裝', '否（沒有收到安裝通知）'],
+    ['停留時間', `${Math.round((Date.now() - t0) / 1000)} 秒${tapped ? '，點過畫面' : '，還沒點過畫面'}`],
+    ['Chrome 允許安裝', '否（還沒收到安裝通知）'],
   ];
   $('#instBody').innerHTML = `<p style="margin:0 0 8px">Chrome 目前沒有給這個網頁「安裝」。檢查結果：</p>
     ${rows.map(([k, v]) => `<div><b>${k}</b>：${esc(v)}</div>`).join('')}
-    <p style="margin:10px 0 0;color:var(--muted)">${inApp ? '請按右上角選單「用 Chrome 開啟」，再按一次這顆按鈕。' : '可以先重新整理、等 10 秒再按一次；還是不行就把這個畫面截圖傳給 Claude。'}</p>
+    <p style="margin:10px 0 0;color:var(--muted)">${inApp ? '請按右上角選單「用 Chrome 開啟」，再按一次這顆按鈕。' : 'Chrome 要在網頁停留 30 秒以上、點過畫面才會開放安裝：先滑滑地圖等一下，出現「現在可以安裝了」再按這顆鈕。也可以用 Chrome 右上選單「加到主畫面」→「安裝」。'}</p>
     <p style="margin:6px 0 0;color:var(--muted);font-size:12px;word-break:break-all">${esc(ua)}</p>`;
   $('#instOverlay').classList.add('show');
 };
