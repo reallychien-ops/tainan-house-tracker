@@ -1,5 +1,5 @@
 // 外殼先用快取（秒開），資料檔一律先抓網路、失敗才用快取（離線也看得到上次的資料）
-const CACHE = 'tainan-house-v2';
+const CACHE = 'tainan-house-v3';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });

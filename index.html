@@ -6,6 +6,7 @@
 <title>台南找房</title>
 <meta name="description" content="台南透天物件地圖：每日查價、下架追蹤、新案雷達、液化／淹水／宮廟／地籍／道館圖層">
 <meta name="theme-color" content="#ffffff">
+<script>if (/githack\.com$/.test(location.hostname)) location.replace('https://reallychien-ops.github.io/tainan-house-tracker/');</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -60,6 +61,9 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .chip.c-new[aria-pressed=false] svg{color:var(--new)}
 .chip.c-down[aria-pressed=false] svg{color:var(--down)}
 .chip.c-star[aria-pressed=false] svg{color:#f59e0b}
+.ranges{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ranges select{height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);font:inherit;font-size:14px;padding:0 10px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.ranges select.on{background-color:var(--ink);border-color:var(--ink);color:#fff}
 
 /* ---------- icon buttons ---------- */
 .ib{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;color:var(--ink-2);transition:background .15s,color .15s,transform .1s}
@@ -140,6 +144,12 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 #lgd .row span{display:inline-flex;align-items:center;gap:4px}
 #lgd i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.12)}
 #lgd .hint{color:var(--muted);font-size:11px}
+#lgd:not(.mini){padding-right:34px}
+#lgd .lgd-x{position:absolute;top:2px;right:2px;width:30px;height:30px;border-radius:9px}
+#lgd .lgd-x svg.i{width:16px;height:16px}
+#lgd.mini{padding:0}
+#lgd .lgd-open{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;font-size:13px;color:var(--ink-2)}
+#lgd .lgd-open svg.i{width:16px;height:16px}
 
 /* pins */
 .pin{--pc:var(--ink);position:absolute;left:0;top:0;transform:translate(-50%,calc(-100% - 7px));background:var(--pc);color:#fff;font:700 12px/1 var(--num);padding:6px 9px;border-radius:10px;white-space:nowrap;box-shadow:0 3px 10px rgba(15,23,41,.3);border:2px solid #fff;transition:transform .15s}
@@ -253,6 +263,10 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
       </div>
       <label class="search"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="路名、社區、行政區" autocomplete="off"></label>
       <div class="chips" id="chips" role="toolbar" aria-label="篩選"></div>
+      <div class="ranges">
+        <select id="maxPrice" aria-label="價格上限"><option value="">價格不限</option></select>
+        <select id="maxAge" aria-label="屋齡上限"><option value="">屋齡不限</option></select>
+      </div>
     </div>
     <div class="meta-row"><span id="countText"></span><span id="legend"></span></div>
     <div id="list"></div>
@@ -324,7 +338,12 @@ function query(p){
   if (!q) return true;
   return `${p.id} ${p.district_road} ${p.title} ${p.zone_type} ${p.summary_note}`.toLowerCase().includes(q);
 }
-const visible = () => data.properties.filter(p => FILTERS.find(f => f.id === filter).test(p) && query(p))
+const PRICE_OPTS = [1300, 1400, 1500, 1600, 1700, 1800, 1900], AGE_OPTS = [5, 10, 15, 20, 25];
+$('#maxPrice').insertAdjacentHTML('beforeend', PRICE_OPTS.map(v => `<option value="${v}">${fmt(v)} 萬以下</option>`).join(''));
+$('#maxAge').insertAdjacentHTML('beforeend', AGE_OPTS.map(v => `<option value="${v}">屋齡 ${v} 年內</option>`).join(''));
+['maxPrice', 'maxAge'].forEach(id => { const el = $('#' + id); el.value = safeGet('tainan_' + id) || ''; el.classList.toggle('on', !!el.value); });
+const inRange = p => (!$('#maxPrice').value || p.price <= +$('#maxPrice').value) && (!$('#maxAge').value || p.age <= +$('#maxAge').value);
+const visible = () => data.properties.filter(p => FILTERS.find(f => f.id === filter).test(p) && query(p) && inRange(p))
   .sort((a, b) => (isStar(b) - isStar(a)) || (isRadar(a) - isRadar(b)) || (isNew(b) - isNew(a)) || String(a.rank).localeCompare(String(b.rank)) || a.price - b.price);
 
 /* ---------- map ---------- */
@@ -398,7 +417,10 @@ function renderLegend(){
   if (layerOn.liq) rows.push(`<b>土壤液化（大地震時地層變軟下陷的可能）</b><div class="row"><span><i style="background:#55ff00"></i>低</span><span><i style="background:#ffff00"></i>中</span><span><i style="background:#ff0000"></i>高</span><span class="hint">沒顏色＝未列潛勢區</span></div>`);
   if (layerOn.flood) rows.push(`<b>淹水（一日下 650mm 豪雨，可能淹多深）</b><div class="row">${FLOOD.slice(1).map(([c, t]) => `<span><i style="background:${c}"></i>${t}m</span>`).join('')}</div>`);
   if (rows.length) rows.push('<span class="hint">點地圖任一處，可查那個位置的等級</span>');
-  $('#lgd').innerHTML = rows.join('');
+  const closed = safeGet('tainan_lgd_closed') === '1';
+  $('#lgd').classList.toggle('mini', closed);
+  $('#lgd').innerHTML = closed ? `<button class="lgd-open" data-lgd="open">${icon('i-layers')}圖例</button>`
+    : `<button class="ib lgd-x" data-lgd="close" title="關閉圖例" aria-label="關閉圖例">${icon('i-x')}</button>` + rows.join('');
   $('#lgd').classList.toggle('show', rows.length > 0);
 }
 const layerOn = JSON.parse(safeGet('tainan_layers') || '{}');
@@ -428,6 +450,11 @@ $('#layers').innerHTML = Object.entries(LAYERS).map(([id, l]) =>
   `<button class="lt" data-id="${id}" title="${l.name}" aria-label="${l.name}" aria-pressed="false">${id === 'gym' ? '<svg class="gymball"><use href="#gymball"/></svg>' : icon(l.ic)}<small>${l.short}</small></button>`).join('');
 // 地圖上的按鈕不要把點擊傳給地圖（否則地圖的 click 會立刻把圖層面板收起來）
 ['.fabs', '#layers', '.mtop', '#lgd'].forEach(sel => { L.DomEvent.disableClickPropagation($(sel)); L.DomEvent.disableScrollPropagation($(sel)); });
+$('#lgd').addEventListener('click', e => {
+  const b = e.target.closest('[data-lgd]'); if (!b) return;
+  e.stopPropagation(); // 按鈕會被換掉，Leaflet 找不到它在圖例裡，會當成點地圖
+  safeSet('tainan_lgd_closed', b.dataset.lgd === 'close' ? '1' : '0'); renderLegend();
+});
 $('#layers').addEventListener('click', e => {
   const b = e.target.closest('.lt'); if (!b) return;
   const on = b.getAttribute('aria-pressed') !== 'true';
@@ -460,7 +487,7 @@ function select(id, scrollList = true, pan = true){
   if (!p || !p.lat) return;
   L.circle([p.lat, p.lng], {radius: 500, color: '#7c3aed', weight: 1.5, dashArray: '5 6', fillColor: '#7c3aed', fillOpacity: .05, interactive: false}).addTo(focusLayer);
   (p.gyms || []).forEach(g => gymMarker(g, true).addTo(focusLayer));
-  if (scrollList && isMobile()) setSheet('half');
+  if (scrollList && isMobile()) setSheet('full');
   if (pan){
     const z = Math.max(map.getZoom(), 15);
     // 手機：清單蓋住地圖下半，把物件往上移到看得到的地方
@@ -522,7 +549,7 @@ function card(p){
 
 function renderChips(){
   $('#chips').innerHTML = FILTERS.map(f => {
-    const n = data.properties.filter(f.test).length;
+    const n = data.properties.filter(p => f.test(p) && inRange(p)).length;
     return `<button class="chip ${f.cls || ''}" data-f="${f.id}" aria-pressed="${filter === f.id}" title="${f.label}" aria-label="${f.label} ${n}">${icon(f.ic)}<b>${n}</b></button>`;
   }).join('');
 }
@@ -540,6 +567,9 @@ $('#chips').addEventListener('click', e => {
   filter = b.dataset.f; render(); fitAll();
 });
 $('#q').addEventListener('input', () => render());
+['maxPrice', 'maxAge'].forEach(id => $('#' + id).addEventListener('change', e => {
+  safeSet('tainan_' + id, e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); fitAll();
+}));
 $('#list').addEventListener('click', e => {
   const b = e.target.closest('[data-act]'); if (!b) return;
   const el = b.closest('.card'), id = el.id.slice(5), p = data.properties.find(x => x.id === id);
@@ -627,14 +657,14 @@ const panel = $('#panel');
 const peekH = () => $('#handle').offsetHeight + $('#sheetHead').offsetHeight + $('.meta-row').offsetHeight + 6;
 function sheetPos(state){
   const h = panel.offsetHeight;
-  return {peek: h - peekH(), half: Math.min(h - peekH(), Math.round(h * .45)), full: 0}[state];
+  return {peek: h - peekH(), full: 0}[state];
 }
 let sheetState = 'peek';
 function setSheet(state){ sheetState = state; panel.style.setProperty('--sheet-y', sheetPos(state) + 'px'); }
 // 手機底部清單拖拉：用 touch 事件自己處理（上下拖＝拉清單；左右滑＝捲動篩選列；清單捲到最上面再往下拉＝收起）
 (function sheetDrag(){
   const list = $('#list');
-  let g = null;
+  let g = null, lastTouch = 0;
   const start = (x, y, target, fromList) => {
     if (!isMobile()) return;
     if (fromList && sheetState === 'full' && list.scrollTop > 0) return;
@@ -657,21 +687,20 @@ function setSheet(state){ sheetState = state; panel.style.setProperty('--sheet-y
     if (!g) return;
     const s = g; g = null; panel.classList.remove('drag');
     if (!s.dir){ // 點一下：點把手或空白處就切換高度，點按鈕／搜尋框照常
-      if (!s.fromList && !s.target.closest('button,label,.chips')) setSheet(sheetState === 'peek' ? 'half' : sheetState === 'half' ? 'full' : 'half');
+      if (!s.fromList && !s.target.closest('button,label,select,.chips,.ranges')) setSheet(sheetState === 'peek' ? 'full' : 'peek');
       return;
     }
-    const dy = y - s.y, v = dy / Math.max(1, Date.now() - s.t), cur = s.start + dy, order = ['full', 'half', 'peek'];
-    let best = order.reduce((a, k) => Math.abs(sheetPos(k) - cur) < Math.abs(sheetPos(a) - cur) ? k : a, 'peek');
-    if (Math.abs(v) > .4) best = order[Math.min(2, Math.max(0, order.indexOf(sheetState) + (v > 0 ? 1 : -1)))];
-    setSheet(best);
+    // 只有兩段：快速一甩就照方向；慢慢拉就看停在哪半邊
+    const dy = y - s.y, v = dy / Math.max(1, Date.now() - s.t), cur = s.start + dy;
+    setSheet(Math.abs(v) > .3 ? (v > 0 ? 'peek' : 'full') : cur < sheetPos('peek') / 2 ? 'full' : 'peek');
   };
   [[$('#handle'), false], [$('#sheetHead'), false], [$('.meta-row'), false], [list, true]].forEach(([el, fromList]) => {
-    el.addEventListener('touchstart', e => start(e.touches[0].clientX, e.touches[0].clientY, e.target, fromList), {passive: true});
+    el.addEventListener('touchstart', e => (lastTouch = Date.now(), start(e.touches[0].clientX, e.touches[0].clientY, e.target, fromList)), {passive: true});
     el.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY, e), {passive: false});
     el.addEventListener('touchend', e => end(e.changedTouches[0].clientY));
     el.addEventListener('touchcancel', e => end(e.changedTouches[0].clientY));
     if (fromList) return;
-    el.addEventListener('mousedown', e => { start(e.clientX, e.clientY, e.target, false); });
+    el.addEventListener('mousedown', e => { if (Date.now() - lastTouch > 800) start(e.clientX, e.clientY, e.target, false); }); // 手機點一下之後瀏覽器會再補送滑鼠事件，不理它，否則會切換兩次
   });
   addEventListener('mousemove', e => g && move(e.clientX, e.clientY, e));
   addEventListener('mouseup', e => end(e.clientY));
