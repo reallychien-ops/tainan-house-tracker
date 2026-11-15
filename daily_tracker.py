@@ -35,6 +35,7 @@ SCAN_FILTER = "透天厝_type/1200-1920_price/0-26_age"
 GYM_RADIUS_M = 500
 # 水利署第三代淹水潛勢「24 小時 650mm」（最嚴重的一日降雨情境），build_flood.py 預先轉成 flood_650.png
 FLOOD_SRC = "水利署第三代淹水潛勢・一日650mm"
+FLOOD_BAD = 2   # flood_650.json levels 的索引：2＝0.5-1.0 公尺起。精選標紅、新案雷達不收
 NAME_MUST = re.compile(r"車墅|車庫|雙車|車位")
 NAME_SKIP = re.compile(r"收租|投報|投資|學宿|店面|住店|透店|農舍|小木屋|渡假|度假")
 
@@ -149,7 +150,7 @@ def flood_check(lat, lng, old_desc=""):
     if not c:
         level, desc = "low", "🟢 一日 650mm 豪雨也不在淹水潛勢區"
     else:
-        level = "med" if c <= 2 else "high"
+        level = "med" if c < FLOOD_BAD else "high"   # 0.5 公尺以上標紅（2026-11-15 App 同意 11-14 建議）
         desc = f"{'🟡' if level == 'med' else '🔴'} 一日 650mm 豪雨可能淹 {meta['levels'][c]} 公尺"
     desc += "（水利署第三代淹水潛勢，座標以路段估）"
     if old_desc and not old_desc.startswith("⚪"):
@@ -351,6 +352,8 @@ def run_daily_check(scan_new=True):
                 continue
             if not ni or "住店" in ni["addr"] or (ni["price"], ni["age"]) in sigs:
                 continue
+            if raster_at("flood_650.png", ni["lat"], ni["lng"]) >= FLOOD_BAD:
+                continue  # 一日 650mm 可能淹 0.5 公尺以上 → 雷達不收（留在 radar_seen，之後不再看）
             sigs.add((ni["price"], ni["age"]))
             n = max(int(x["id"][1:]) for x in props) + 1
             props.append({
