@@ -1,5 +1,16 @@
 [
   {
+    "timestamp": "2026-11-15 09:00",
+    "checked_count": 71,
+    "new_discovered_count": 0,
+    "changes": [
+      "✅ 全部持平"
+    ],
+    "errors": [
+      "P12 查價失敗：Failed to perform, curl: (7) Failed to connect to www.rakuya.com.tw:443 after 13153 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details."
+    ]
+  },
+  {
     "timestamp": "2026-11-14 09:00",
     "checked_count": 72,
     "new_discovered_count": 0,
