@@ -70,6 +70,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
 .ranges{display:grid;gap:6px}
 .rg{display:grid;grid-template-columns:64px 1fr auto 1fr;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
 .rg i{font-style:normal}
+.rg.sort{grid-template-columns:64px 1fr}
 .ranges select{height:38px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);font:inherit;font-size:14px;padding:0 10px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat}
 .ranges select.on{background-color:var(--ink);border-color:var(--ink);color:#fff}
 
@@ -281,6 +282,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
       <div class="ranges">
         <div class="rg"><span>價格（萬）</span><select id="minPrice" aria-label="價格下限"><option value="">最低</option></select><i>～</i><select id="maxPrice" aria-label="價格上限"><option value="">最高</option></select></div>
         <div class="rg"><span>屋齡（年）</span><select id="minAge" aria-label="屋齡下限"><option value="">最低</option></select><i>～</i><select id="maxAge" aria-label="屋齡上限"><option value="">最高</option></select></div>
+        <div class="rg sort"><span>排序</span><select id="sortBy" aria-label="排序"><option value="">推薦（收藏、精選在前）</option><option value="price">價格 低→高</option><option value="-price">價格 高→低</option><option value="listed">上架時間 新→舊</option><option value="added">進到 App 時間 新→舊</option></select></div>
       </div>
     </div>
     <div class="meta-row"><span id="countText"></span><span id="legend"></span></div>
@@ -370,8 +372,14 @@ RANGE_IDS.forEach(id => {
 });
 const between = (x, lo, hi) => { [lo, hi] = [lo === '' ? -Infinity : +lo, hi === '' ? Infinity : +hi].sort((a, b) => a - b); return x >= lo && x <= hi; };
 const inRange = p => between(p.price, $('#minPrice').value, $('#maxPrice').value) && between(p.age, $('#minAge').value, $('#maxAge').value);
+// 排序：永慶頁面沒有上架日期，用物件編號（越大越新）；樂屋網讀不到編號排最後。進 App 時間用 P 編號（每加一間 +1）
+const listedNo = p => +(p.url.match(/yungching\.com\.tw\/house\/(\d+)/) || [0, -1])[1];
+const SORTS = {price: (a, b) => a.price - b.price, '-price': (a, b) => b.price - a.price,
+  listed: (a, b) => listedNo(b) - listedNo(a), added: (a, b) => b.id.slice(1) - a.id.slice(1)};
+const sortSel = $('#sortBy');
+sortSel.value = safeGet('tainan_sortBy') || ''; sortSel.classList.toggle('on', !!sortSel.value);
 const visible = () => data.properties.filter(p => FILTERS.find(f => f.id === filter).test(p) && query(p) && inRange(p))
-  .sort((a, b) => (favs.has(b.id) - favs.has(a.id)) || (isStar(b) - isStar(a)) || (isRadar(a) - isRadar(b)) || (isNew(b) - isNew(a)) || String(a.rank).localeCompare(String(b.rank)) || a.price - b.price);
+  .sort(SORTS[sortSel.value] || ((a, b) => (favs.has(b.id) - favs.has(a.id)) || (isStar(b) - isStar(a)) || (isRadar(a) - isRadar(b)) || (isNew(b) - isNew(a)) || String(a.rank).localeCompare(String(b.rank)) || a.price - b.price));
 
 /* ---------- map ---------- */
 const map = L.map('map', {zoomControl: false, maxBounds: TAINAN.pad(0.02), maxBoundsViscosity: 1, minZoom: 10, maxZoom: 19, attributionControl: true})
@@ -649,6 +657,9 @@ $('#q').addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefa
 $('#list').addEventListener('click', e => {
   if (e.target.closest('[data-geo]')) return findPlace();
   const b = e.target.closest('[data-geo-i]'); if (b) goPlace(geo.items[+b.dataset.geoI]);
+});
+sortSel.addEventListener('change', e => {
+  safeSet('tainan_sortBy', e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); $('#list').scrollTop = 0;
 });
 RANGE_IDS.forEach(id => $('#' + id).addEventListener('change', e => {
   safeSet('tainan_' + id, e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); fitAll();
