@@ -1,5 +1,17 @@
 [
   {
+    "timestamp": "2026-11-17 09:00",
+    "checked_count": 71,
+    "new_discovered_count": 1,
+    "changes": [
+      "📉 降價 101 萬：永康區自強路 1899→1798 萬",
+      "🆕 新物件：台南市麻豆區安業 麻豆區安業全新4樓透天車墅 1880 萬（3.7 年）"
+    ],
+    "errors": [
+      "P03 查價失敗：Failed to perform, curl: (7) Failed to connect to www.rakuya.com.tw:443 after 11240 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details."
+    ]
+  },
+  {
     "timestamp": "2026-11-16 09:00",
     "checked_count": 72,
     "new_discovered_count": 0,
