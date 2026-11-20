@@ -1,5 +1,14 @@
 [
   {
+    "timestamp": "2026-11-20 09:00",
+    "checked_count": 75,
+    "new_discovered_count": 1,
+    "changes": [
+      "🆕 新物件：台南市仁德區義林十街 仁德清脆鳥語仁義三號公園獨院車墅 1888 萬（24.1 年）"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-19 09:00",
     "checked_count": 74,
     "new_discovered_count": 1,
