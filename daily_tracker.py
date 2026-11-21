@@ -3,7 +3,7 @@
 """
 台南購屋每日巡檢 (daily_tracker.py) — 2026-11-13 由 Claude 接手重寫
 1. 所有還沒下架的物件（永慶＋樂屋網）查價格與上下架；只有網站明確回「已成交/關閉/404」才判下架
-2. 永慶 9 個行政區「透天厝・1,200～1,920 萬・屋齡 26 年內」新上架掃描，過宮廟 200m 與液化檢核後加入
+2. 永慶 9 個行政區＋中西區湖美（1 公里內）「透天厝・1,200～1,920 萬・屋齡 26 年內」新上架掃描，過宮廟 200m 與液化檢核後加入
 3. 每間物件記 added_at／price_history／delisted_at；附近 500m 寶可夢道館（twpkinfo）
 4. 回寫 Google 試算表、properties.json、git push（GitHub Pages 網頁直接讀 properties.json）
 錯誤一律寫進 daily_check_log.json 的 errors，不再吞掉。
@@ -30,13 +30,16 @@ SPREADSHEET_ID = "1R3vS8mfq9VH-YCfOArEKBaqKMST2HmpqD9MVI66TsW0"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
 HEADERS = {"User-Agent": UA}
 
-SCAN_DISTRICTS = ["北區", "安南區", "永康區", "新化區", "善化區", "新市區", "安定區", "麻豆區", "仁德區"]
+SCAN_DISTRICTS = ["北區", "安南區", "永康區", "新化區", "善化區", "新市區", "安定區", "麻豆區", "仁德區", "中西區"]
+# 中西區只收湖美重劃區（湖美／頂美／西賢一帶）：離湖美中心 1 公里內，其他中西區物件多是店面老屋
+HUMEI = (23.0005, 120.1820)
+HUMEI_RADIUS_M = 1000
 SCAN_FILTER = "透天厝_type/1200-1920_price/0-26_age"
 GYM_RADIUS_M = 500
 # 水利署第三代淹水潛勢「24 小時 650mm」（最嚴重的一日降雨情境），build_flood.py 預先轉成 flood_650.png
 FLOOD_SRC = "水利署第三代淹水潛勢・一日650mm"
 FLOOD_BAD = 2   # flood_650.json levels 的索引：2＝0.5-1.0 公尺起。精選標紅、新案雷達不收
-NAME_MUST = re.compile(r"車墅|車庫|雙車|車位")
+NAME_MUST = re.compile(r"車墅|車庫|雙車|車位|人車共道")
 NAME_SKIP = re.compile(r"收租|投報|投資|學宿|店面|住店|透店|農舍|小木屋|渡假|度假")
 
 errors = []
@@ -351,6 +354,8 @@ def run_daily_check(scan_new=True):
                 errors.append(f"新案 {url} 檢查失敗：{e}")
                 continue
             if not ni or "住店" in ni["addr"] or (ni["price"], ni["age"]) in sigs:
+                continue
+            if "中西區" in ni["addr"] and haversine(ni["lat"], ni["lng"], *HUMEI) > HUMEI_RADIUS_M:
                 continue
             if raster_at("flood_650.png", ni["lat"], ni["lng"]) >= FLOOD_BAD:
                 continue  # 一日 650mm 可能淹 0.5 公尺以上 → 雷達不收（留在 radar_seen，之後不再看）
