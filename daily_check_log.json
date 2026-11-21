@@ -1,5 +1,14 @@
 [
   {
+    "timestamp": "2026-11-21 09:00",
+    "checked_count": 76,
+    "new_discovered_count": 0,
+    "changes": [
+      "✅ 全部持平"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-20 09:00",
     "checked_count": 75,
     "new_discovered_count": 1,
