@@ -978,7 +978,8 @@
      "price": 1313.0
     }
    ],
-   "delisted_at": "2026-11-13"
+   "delisted_at": "2026-11-13",
+   "htype": "電梯大樓"
   },
   {
    "id": "P16",
@@ -5814,6 +5815,1452 @@
      "lat": 23.002563,
      "lng": 120.182966,
      "dist": 479
+    }
+   ]
+  },
+  {
+   "id": "P86",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區民權路四段（世界湖美麗）",
+   "title": "中西區世界湖美麗溫馨優質三房平車",
+   "developer": "【世界湖美麗】電梯大樓，2/20樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1330.0,
+   "initial_price": 1330.0,
+   "unit_price": 28.8,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1330.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,197 ～ 1,236 萬",
+   "cash_needed": "約 305 萬（貸8成試算）",
+   "monthly_pay": "約 42,591 元",
+   "age": 8.5,
+   "area_str": "建 46.18 / 室內 22.78",
+   "layout": "3房(室)2廳2衛｜2/20樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟡 代天聖安宮 約 166m（以路段估，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美；2 樓",
+   "url": "https://buy.yungching.com.tw/house/7398475",
+   "lat": 22.99911,
+   "lng": 120.1863,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 56
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 123
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 339
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 354
+    },
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 384
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 408
+    },
+    {
+     "name": "新臨安橋",
+     "lat": 22.99609,
+     "lng": 120.189052,
+     "dist": 438
+    }
+   ]
+  },
+  {
+   "id": "P87",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區民權路四段（世界湖美麗）",
+   "title": "中西區世界湖美麗優質高樓景觀三房平車",
+   "developer": "【世界湖美麗】電梯大樓，16/20樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1580.0,
+   "initial_price": 1580.0,
+   "unit_price": 33.84,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1580.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,422 ～ 1,469 萬",
+   "cash_needed": "約 363 萬（貸8成試算）",
+   "monthly_pay": "約 50,597 元",
+   "age": 8.5,
+   "area_str": "建 46.69 / 室內 22.36",
+   "layout": "3房(室)2廳2衛｜16/20樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟡 代天聖安宮 約 166m（以路段估，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美；16 樓",
+   "url": "https://buy.yungching.com.tw/house/7444940",
+   "lat": 22.99911,
+   "lng": 120.1863,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 56
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 123
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 339
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 354
+    },
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 384
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 408
+    },
+    {
+     "name": "新臨安橋",
+     "lat": 22.99609,
+     "lng": 120.189052,
+     "dist": 438
+    }
+   ]
+  },
+  {
+   "id": "P88",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區民權路四段（世界湖美麗）",
+   "title": "中西區 湖美麗 | 高樓層4房平車 | 河景美房",
+   "developer": "【世界湖美麗】電梯大樓，20/20樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1700.0,
+   "initial_price": 1700.0,
+   "unit_price": 29.65,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1700.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,530 ～ 1,581 萬",
+   "cash_needed": "約 391 萬（貸8成試算）",
+   "monthly_pay": "約 54,440 元",
+   "age": 8.5,
+   "area_str": "建 57.34 / 室內 29.06",
+   "layout": "4房(室)2廳2衛｜20/20樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟡 代天聖安宮 約 166m（以路段估，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美；20 樓頂樓 4 房",
+   "url": "https://buy.yungching.com.tw/house/7434662",
+   "lat": 22.99911,
+   "lng": 120.1863,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 56
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 123
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 339
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 354
+    },
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 384
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 408
+    },
+    {
+     "name": "新臨安橋",
+     "lat": 22.99609,
+     "lng": 120.189052,
+     "dist": 438
+    }
+   ]
+  },
+  {
+   "id": "P89",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區頂美三街（皇龍天朵綠園）",
+   "title": "中西區皇龍天朵邊間工業風三房平車美宅",
+   "developer": "【皇龍天朵綠園】電梯大樓，10/18樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1788.0,
+   "initial_price": 1788.0,
+   "unit_price": 33.99,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1788.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,609 ～ 1,662 萬",
+   "cash_needed": "約 411 萬（貸8成試算）",
+   "monthly_pay": "約 57,258 元",
+   "age": 10.1,
+   "area_str": "建 52.61 / 室內 29.26",
+   "layout": "3房(室)2廳2衛｜10/18樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 代天聖安宮 約 212m、朝興溫陵廟 約 485m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美；10 樓邊間",
+   "url": "https://buy.yungching.com.tw/house/7475008",
+   "lat": 22.99992,
+   "lng": 120.186,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 59
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 217
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 265
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 288
+    },
+    {
+     "name": "湖美麗景公園中央噴水池",
+     "lat": 23.002563,
+     "lng": 120.182966,
+     "dist": 427
+    },
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 461
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 491
+    }
+   ]
+  },
+  {
+   "id": "P90",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區西賢一街（太平洋華城）",
+   "title": "親友專任#湖美生活圈四房平車",
+   "developer": "【太平洋華城】華廈，7/9樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1288.0,
+   "initial_price": 1288.0,
+   "unit_price": 21.56,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1288.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,159 ～ 1,197 萬",
+   "cash_needed": "約 296 萬（貸8成試算）",
+   "monthly_pay": "約 41,246 元",
+   "age": 35.4,
+   "area_str": "建 59.75 / 室內 41.65",
+   "layout": "4房(室)2廳2衛｜7/9樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 財團法人台灣省台南市關帝聖堂 約 325m、南興萬聖公廟 約 452m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美；華廈 4 房，屋齡 35 年",
+   "url": "https://buy.yungching.com.tw/house/7455045",
+   "lat": 22.9996,
+   "lng": 120.1778,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "台南湖美教會",
+     "lat": 23.001646,
+     "lng": 120.180064,
+     "dist": 324
+    },
+    {
+     "name": "媚",
+     "lat": 22.99684,
+     "lng": 120.179798,
+     "dist": 368
+    },
+    {
+     "name": "射擊美女",
+     "lat": 22.996869,
+     "lng": 120.180152,
+     "dist": 387
+    },
+    {
+     "name": "湖美公園",
+     "lat": 23.001421,
+     "lng": 120.181383,
+     "dist": 418
+    },
+    {
+     "name": "義豐冬瓜伯",
+     "lat": 22.99815,
+     "lng": 120.173784,
+     "dist": 441
+    },
+    {
+     "name": "萬聖公廟",
+     "lat": 23.000015,
+     "lng": 120.173389,
+     "dist": 453
+    }
+   ]
+  },
+  {
+   "id": "P91",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區美麗街（美麗佳園）",
+   "title": "美麗佳園黃金搶手樓層三房附平面車位",
+   "developer": "【美麗佳園】華廈，8/10樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1200.0,
+   "initial_price": 1200.0,
+   "unit_price": 24.38,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1200.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,080 ～ 1,116 萬",
+   "cash_needed": "約 276 萬（貸8成試算）",
+   "monthly_pay": "約 38,428 元",
+   "age": 27.3,
+   "area_str": "建 49.22 / 室內 30.04",
+   "layout": "3房(室)2廳2衛｜8/10樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）",
+   "temple_desc": "🟡 代天聖安宮 約 162m（以社區位置，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：華廈 3 房，屋齡 27 年",
+   "url": "https://buy.yungching.com.tw/house/7541084",
+   "lat": 22.99981,
+   "lng": 120.18935,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 279
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 310
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 332
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 336
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 360
+    },
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 361
+    },
+    {
+     "name": "臺南市中西戶政事務所",
+     "lat": 22.999983,
+     "lng": 120.193059,
+     "dist": 379
+    },
+    {
+     "name": "新臨安橋",
+     "lat": 22.99609,
+     "lng": 120.189052,
+     "dist": 415
+    },
+    {
+     "name": "武聖夜市",
+     "lat": 23.003489,
+     "lng": 120.190526,
+     "dist": 425
+    },
+    {
+     "name": "龍盛社區指標",
+     "lat": 22.998241,
+     "lng": 120.193527,
+     "dist": 461
+    }
+   ]
+  },
+  {
+   "id": "P92",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（中西區）",
+   "district_road": "中西區美麗街（美麗佳園）",
+   "title": "獨家~愛上近星鑽特區「美麗佳園」四房平車美宅",
+   "developer": "【美麗佳園】華廈，8/10樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1398.0,
+   "initial_price": 1398.0,
+   "unit_price": 23.91,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1398.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,258 ～ 1,300 萬",
+   "cash_needed": "約 321 萬（貸8成試算）",
+   "monthly_pay": "約 44,769 元",
+   "age": 27.3,
+   "area_str": "建 58.46 / 室內 36.61",
+   "layout": "4房(室)2廳2衛｜8/10樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）",
+   "temple_desc": "🟡 代天聖安宮 約 162m（以社區位置，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：華廈 4 房，屋齡 27 年",
+   "url": "https://buy.yungching.com.tw/house/6805550",
+   "lat": 22.99981,
+   "lng": 120.18935,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "全家便利商店 台南芳草店",
+     "lat": 22.9973049,
+     "lng": 120.189502,
+     "dist": 279
+    },
+    {
+     "name": "FlyingBird",
+     "lat": 23.002073,
+     "lng": 120.187573,
+     "dist": 310
+    },
+    {
+     "name": "鐵樹",
+     "lat": 22.996823,
+     "lng": 120.189428,
+     "dist": 332
+    },
+    {
+     "name": "裝置藝術",
+     "lat": 23.002059,
+     "lng": 120.187143,
+     "dist": 336
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 360
+    },
+    {
+     "name": "耶穌基督後期聖徒教會-安平教會",
+     "lat": 22.999404,
+     "lng": 120.185845,
+     "dist": 361
+    },
+    {
+     "name": "臺南市中西戶政事務所",
+     "lat": 22.999983,
+     "lng": 120.193059,
+     "dist": 379
+    },
+    {
+     "name": "新臨安橋",
+     "lat": 22.99609,
+     "lng": 120.189052,
+     "dist": 415
+    },
+    {
+     "name": "武聖夜市",
+     "lat": 23.003489,
+     "lng": 120.190526,
+     "dist": 425
+    },
+    {
+     "name": "龍盛社區指標",
+     "lat": 22.998241,
+     "lng": 120.193527,
+     "dist": 461
+    }
+   ]
+  },
+  {
+   "id": "P93",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區建平十一街（佳展大方）",
+   "title": "（專）安平近中西區｜佳展大方 ｜朝南輕齡明亮三房",
+   "developer": "【佳展大方】電梯大樓，10/15樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1468.0,
+   "initial_price": 1468.0,
+   "unit_price": 33.39,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1468.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,321 ～ 1,365 萬",
+   "cash_needed": "約 337 萬（貸8成試算）",
+   "monthly_pay": "約 47,011 元",
+   "age": 4.1,
+   "area_str": "建 43.96 / 室內 22.41",
+   "layout": "3房(室)2廳2衛｜10/15樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟡 三平廣濟宮 約 181m（以路段估，要對門牌確認）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：湖美南邊；已降價 70 萬",
+   "url": "https://buy.yungching.com.tw/house/7222879",
+   "lat": 22.99413,
+   "lng": 120.1845,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "台南聖教會",
+     "lat": 22.994675,
+     "lng": 120.18511,
+     "dist": 87
+    },
+    {
+     "name": "台南市政府永華市政中心",
+     "lat": 22.991702,
+     "lng": 120.185037,
+     "dist": 275
+    },
+    {
+     "name": "綠人雕像",
+     "lat": 22.99032,
+     "lng": 120.184558,
+     "dist": 423
+    },
+    {
+     "name": "少女想吃天鵝肉",
+     "lat": 22.992797,
+     "lng": 120.188536,
+     "dist": 438
+    },
+    {
+     "name": "藏金閣二館",
+     "lat": 22.992513,
+     "lng": 120.188441,
+     "dist": 441
+    },
+    {
+     "name": "慶平公園碑",
+     "lat": 22.995687,
+     "lng": 120.180218,
+     "dist": 471
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 473
+    }
+   ]
+  },
+  {
+   "id": "P94",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區健康路三段（潤隆鉑悦）",
+   "title": "台南安平市政特區｜潤隆鉑悅邊間濱海景觀三房車",
+   "developer": "【潤隆鉑悦】電梯大樓，3/24樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1460.0,
+   "initial_price": 1460.0,
+   "unit_price": 40.21,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1460.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,314 ～ 1,357 萬",
+   "cash_needed": "約 335 萬（貸8成試算）",
+   "monthly_pay": "約 46,755 元",
+   "age": 0.0,
+   "area_str": "建 36.31 / 室內 22.25",
+   "layout": "3房(室)2廳2衛｜3/24樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 極樂寺 約 540m、財團法人台灣省台南市水門宮 約 600m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：物件說明寫「平面車位並可設置充電樁」；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7595356",
+   "lat": 22.98341,
+   "lng": 120.17894,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "安新橋石獅",
+     "lat": 22.981764,
+     "lng": 120.180738,
+     "dist": 259
+    },
+    {
+     "name": "木造藝術品",
+     "lat": 22.984271,
+     "lng": 120.181947,
+     "dist": 322
+    },
+    {
+     "name": "螃蟹圖騰",
+     "lat": 22.984495,
+     "lng": 120.175977,
+     "dist": 326
+    },
+    {
+     "name": "永華公園",
+     "lat": 22.984414,
+     "lng": 120.183551,
+     "dist": 485
+    }
+   ]
+  },
+  {
+   "id": "P95",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區健康路三段（潤隆鉑悅）",
+   "title": "台南潤隆鉑悅三房+平面車位",
+   "developer": "【潤隆鉑悅】電梯大樓，14/24樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1728.0,
+   "initial_price": 1728.0,
+   "unit_price": 41.38,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1728.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,555 ～ 1,607 萬",
+   "cash_needed": "約 397 萬（貸8成試算）",
+   "monthly_pay": "約 55,337 元",
+   "age": 0.0,
+   "area_str": "建 41.76 / 室內 22.25",
+   "layout": "3房(室)2廳2衛｜14/24樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 極樂寺 約 540m、財團法人台灣省台南市水門宮 約 600m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：物件說明寫可設置充電樁（同社區另一間）；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7195025",
+   "lat": 22.98341,
+   "lng": 120.17894,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "安新橋石獅",
+     "lat": 22.981764,
+     "lng": 120.180738,
+     "dist": 259
+    },
+    {
+     "name": "木造藝術品",
+     "lat": 22.984271,
+     "lng": 120.181947,
+     "dist": 322
+    },
+    {
+     "name": "螃蟹圖騰",
+     "lat": 22.984495,
+     "lng": 120.175977,
+     "dist": 326
+    },
+    {
+     "name": "永華公園",
+     "lat": 22.984414,
+     "lng": 120.183551,
+     "dist": 485
+    }
+   ]
+  },
+  {
+   "id": "P96",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區國平北路（興富發愛琴海）",
+   "title": "愛琴海大空間露臺正4房+平車",
+   "developer": "【興富發愛琴海】電梯大樓，2/34樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1580.0,
+   "initial_price": 1580.0,
+   "unit_price": 28.91,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1580.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,422 ～ 1,469 萬",
+   "cash_needed": "約 363 萬（貸8成試算）",
+   "monthly_pay": "約 50,597 元",
+   "age": 1.6,
+   "area_str": "建 54.66 / 室內 30.07",
+   "layout": "4房(室)2廳2衛｜2/34樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 興和宮 約 543m、無極慈元宮 約 545m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：2 樓大露台 4 房；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7577119",
+   "lat": 22.98265,
+   "lng": 120.16716,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "現代藝術",
+     "lat": 22.981733,
+     "lng": 120.168599,
+     "dist": 178
+    },
+    {
+     "name": "臺灣臺南地方檢察署",
+     "lat": 22.984909,
+     "lng": 120.170734,
+     "dist": 443
+    }
+   ]
+  },
+  {
+   "id": "P97",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區國平北路（興富發愛琴海）",
+   "title": "安平愛琴海高樓層景觀三房平面車位",
+   "developer": "【興富發愛琴海】電梯大樓，23/34樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1188.0,
+   "initial_price": 1188.0,
+   "unit_price": 28.5,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1188.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,069 ～ 1,104 萬",
+   "cash_needed": "約 273 萬（貸8成試算）",
+   "monthly_pay": "約 38,044 元",
+   "age": 1.6,
+   "area_str": "建 41.69 / 室內 21.65",
+   "layout": "3房(室)2廳2衛｜23/34樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 興和宮 約 543m、無極慈元宮 約 545m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：23 樓，現況一房、可隔三房；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7240859",
+   "lat": 22.98265,
+   "lng": 120.16716,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "現代藝術",
+     "lat": 22.981733,
+     "lng": 120.168599,
+     "dist": 178
+    },
+    {
+     "name": "臺灣臺南地方檢察署",
+     "lat": 22.984909,
+     "lng": 120.170734,
+     "dist": 443
+    }
+   ]
+  },
+  {
+   "id": "P98",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區健康路三段（新悅城）",
+   "title": "安平新悅城凱旋超大露台三房平車",
+   "developer": "【新悅城】電梯大樓，2/26樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1088.0,
+   "initial_price": 1088.0,
+   "unit_price": 23.34,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1088.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "979 ～ 1,011 萬",
+   "cash_needed": "約 250 萬（貸8成試算）",
+   "monthly_pay": "約 34,842 元",
+   "age": 9.8,
+   "area_str": "建 46.62 / 室內 26.04",
+   "layout": "3房(室)2廳2衛｜2/26樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 興和宮 約 450m、無極慈元宮 約 477m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：2 樓大露台；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7531533",
+   "lat": 22.98402,
+   "lng": 120.16839,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "現代藝術",
+     "lat": 22.981733,
+     "lng": 120.168599,
+     "dist": 255
+    },
+    {
+     "name": "臺灣臺南地方檢察署",
+     "lat": 22.984909,
+     "lng": 120.170734,
+     "dist": 259
+    },
+    {
+     "name": "育平里活動中心",
+     "lat": 22.987223,
+     "lng": 120.167339,
+     "dist": 371
+    },
+    {
+     "name": "興和宮代天府",
+     "lat": 22.987418,
+     "lng": 120.165806,
+     "dist": 461
+    }
+   ]
+  },
+  {
+   "id": "P99",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區國平北路（潤隆真愛2）",
+   "title": "國平重劃潤隆真愛2全新邊間3房+大平車",
+   "developer": "【潤隆真愛2】電梯大樓，9/18樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1280.0,
+   "initial_price": 1280.0,
+   "unit_price": 30.1,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1280.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,152 ～ 1,190 萬",
+   "cash_needed": "約 294 萬（貸8成試算）",
+   "monthly_pay": "約 40,990 元",
+   "age": 5.5,
+   "area_str": "建 42.53 / 室內 20.03",
+   "layout": "3房(室)2廳2衛｜9/18樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 極樂寺 約 441m、興和宮 約 592m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：邊間大平車；液化高潛勢要問基礎工法",
+   "url": "https://buy.yungching.com.tw/house/7558327",
+   "lat": 22.98332,
+   "lng": 120.1697,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "臺灣臺南地方檢察署",
+     "lat": 22.984909,
+     "lng": 120.170734,
+     "dist": 205
+    },
+    {
+     "name": "現代藝術",
+     "lat": 22.981733,
+     "lng": 120.168599,
+     "dist": 209
+    },
+    {
+     "name": "育平里活動中心",
+     "lat": 22.987223,
+     "lng": 120.167339,
+     "dist": 496
+    }
+   ]
+  },
+  {
+   "id": "P100",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "電梯大樓",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區建平八街（美夢成真(府城新象)）",
+   "title": "安平府城｜捷運預定站3+1房景觀宅",
+   "developer": "【美夢成真(府城新象)】電梯大樓，21/26樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 1180.0,
+   "initial_price": 1180.0,
+   "unit_price": 23.28,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 1180.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "1,062 ～ 1,097 萬",
+   "cash_needed": "約 271 萬（貸8成試算）",
+   "monthly_pay": "約 37,788 元",
+   "age": 28.8,
+   "area_str": "建 50.68 / 室內 34.24",
+   "layout": "4房(室)2廳2衛｜21/26樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 碧雲宮 約 501m、九華山護國地藏禪寺 約 553m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：21 樓 3+1 房，屋齡 29 年",
+   "url": "https://buy.yungching.com.tw/house/6717832",
+   "lat": 22.99051,
+   "lng": 120.1819,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "樹屋文旅",
+     "lat": 22.99078,
+     "lng": 120.179595,
+     "dist": 237
+    },
+    {
+     "name": "綠人雕像",
+     "lat": 22.99032,
+     "lng": 120.184558,
+     "dist": 272
+    },
+    {
+     "name": "愛丁堡",
+     "lat": 22.991742,
+     "lng": 120.179537,
+     "dist": 277
+    },
+    {
+     "name": "Tainan City Hall",
+     "lat": 22.989586,
+     "lng": 120.184601,
+     "dist": 294
+    },
+    {
+     "name": "台南市政府永華市政中心",
+     "lat": 22.991702,
+     "lng": 120.185037,
+     "dist": 347
+    },
+    {
+     "name": "車之輪",
+     "lat": 22.990009,
+     "lng": 120.178129,
+     "dist": 390
+    },
+    {
+     "name": "天橋教會",
+     "lat": 22.994182,
+     "lng": 120.179541,
+     "dist": 474
+    }
+   ]
+  },
+  {
+   "id": "P101",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區建平十二街（美夢成真）",
+   "title": "安平享生活【美夢成真】稀有正3房平車",
+   "developer": "【美夢成真】華廈，4/7樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 899.0,
+   "initial_price": 899.0,
+   "unit_price": 21.27,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 899.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "809 ～ 836 萬",
+   "cash_needed": "約 206 萬（貸8成試算）",
+   "monthly_pay": "約 28,789 元",
+   "age": 33.2,
+   "area_str": "建 42.26 / 室內 28.22",
+   "layout": "3房(室)2廳2衛｜4/7樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 三平廣濟宮 約 248m、財團法人台灣省台南市關帝聖堂 約 476m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：華廈 3 房，屋齡 33 年，總價低",
+   "url": "https://buy.yungching.com.tw/house/7253353",
+   "lat": 22.99502,
+   "lng": 120.1833,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "台南聖教會",
+     "lat": 22.994675,
+     "lng": 120.18511,
+     "dist": 189
+    },
+    {
+     "name": "慶平公園碑",
+     "lat": 22.995687,
+     "lng": 120.180218,
+     "dist": 324
+    },
+    {
+     "name": "公園古文雕像",
+     "lat": 22.995469,
+     "lng": 120.179824,
+     "dist": 359
+    },
+    {
+     "name": "射擊美女",
+     "lat": 22.996869,
+     "lng": 120.180152,
+     "dist": 382
+    },
+    {
+     "name": "天橋教會",
+     "lat": 22.994182,
+     "lng": 120.179541,
+     "dist": 395
+    },
+    {
+     "name": "台南市政府永華市政中心",
+     "lat": 22.991702,
+     "lng": 120.185037,
+     "dist": 409
+    },
+    {
+     "name": "媚",
+     "lat": 22.99684,
+     "lng": 120.179798,
+     "dist": 411
+    },
+    {
+     "name": "平安里",
+     "lat": 22.998005,
+     "lng": 120.186426,
+     "dist": 461
+    }
+   ]
+  },
+  {
+   "id": "P102",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區文平路（福祿壽大樓）",
+   "title": "安平國小走路上學時尚裝潢三房平車",
+   "developer": "【福祿壽大樓】華廈，5/7樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 899.0,
+   "initial_price": 899.0,
+   "unit_price": 25.27,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 899.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "809 ～ 836 萬",
+   "cash_needed": "約 206 萬（貸8成試算）",
+   "monthly_pay": "約 28,789 元",
+   "age": 33.3,
+   "area_str": "建 35.58 / 室內 22.87",
+   "layout": "3房(室)2廳2衛｜5/7樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "high",
+   "liq_desc": "🔴 高潛勢（紅區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 極樂寺 約 404m、財團法人台灣省台南市水門宮 約 733m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：華廈 3 房，屋齡 33 年，總價低",
+   "url": "https://buy.yungching.com.tw/house/6678581",
+   "lat": 22.98353,
+   "lng": 120.1776,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "螃蟹圖騰",
+     "lat": 22.984495,
+     "lng": 120.175977,
+     "dist": 197
+    },
+    {
+     "name": "安新橋石獅",
+     "lat": 22.981764,
+     "lng": 120.180738,
+     "dist": 376
+    },
+    {
+     "name": "木造藝術品",
+     "lat": 22.984271,
+     "lng": 120.181947,
+     "dist": 452
+    },
+    {
+     "name": "建平五街184巷變電箱",
+     "lat": 22.987617,
+     "lng": 120.176627,
+     "dist": 465
+    }
+   ]
+  },
+  {
+   "id": "P103",
+   "tracked": true,
+   "status": "上架追蹤中",
+   "price_trend": "🆕新上架",
+   "htype": "華廈",
+   "added_at": "2026-11-23",
+   "last_checked": "2026-11-23 07:53",
+   "rank": "🏢大樓_手動加入",
+   "zone_type": "市區（安平區）",
+   "district_road": "安平區建平九街（朝代王國）",
+   "title": "安平市政特區走路上學大坪數三房平車",
+   "developer": "【朝代王國】華廈，5/6樓；建商與社區（管理費、能否裝充電樁、EMS）待問",
+   "price": 868.0,
+   "initial_price": 868.0,
+   "unit_price": 20.96,
+   "price_history": [
+    {
+     "date": "2026-11-23",
+     "price": 868.0
+    }
+   ],
+   "ref_unit_price": "待查",
+   "target_price": "781 ～ 807 萬",
+   "cash_needed": "約 199 萬（貸8成試算）",
+   "monthly_pay": "約 27,796 元",
+   "age": 33.8,
+   "area_str": "建 41.41 / 室內 28.75",
+   "layout": "3房(室)2廳2衛｜5/6樓",
+   "garage_road": "坡道平面固定車位",
+   "commute_pogo": "",
+   "liq_level": "low",
+   "liq_desc": "🟢 低潛勢（綠區）（以路段估）",
+   "temple_desc": "🟢 200m內無登記宮廟（最近 碧雲宮 約 544m、九華山護國地藏禪寺 約 551m）",
+   "cadastral_desc": "待查",
+   "summary_note": "2026-11-23 大樓手動加入：3 房，屋齡 34 年，總價低",
+   "url": "https://buy.yungching.com.tw/house/7008987",
+   "lat": 22.99107,
+   "lng": 120.1818,
+   "flood_level": "low",
+   "flood_desc": "🟢 一日 650mm 豪雨也不在淹水潛勢區（水利署第三代淹水潛勢，座標以路段估）",
+   "flood_src": "水利署第三代淹水潛勢・一日650mm",
+   "gyms": [
+    {
+     "name": "樹屋文旅",
+     "lat": 22.99078,
+     "lng": 120.179595,
+     "dist": 228
+    },
+    {
+     "name": "愛丁堡",
+     "lat": 22.991742,
+     "lng": 120.179537,
+     "dist": 243
+    },
+    {
+     "name": "綠人雕像",
+     "lat": 22.99032,
+     "lng": 120.184558,
+     "dist": 294
+    },
+    {
+     "name": "Tainan City Hall",
+     "lat": 22.989586,
+     "lng": 120.184601,
+     "dist": 330
+    },
+    {
+     "name": "台南市政府永華市政中心",
+     "lat": 22.991702,
+     "lng": 120.185037,
+     "dist": 338
+    },
+    {
+     "name": "車之輪",
+     "lat": 22.990009,
+     "lng": 120.178129,
+     "dist": 393
+    },
+    {
+     "name": "天橋教會",
+     "lat": 22.994182,
+     "lng": 120.179541,
+     "dist": 416
     }
    ]
   }

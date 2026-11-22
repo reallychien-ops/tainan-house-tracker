@@ -282,6 +282,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stro
       <div class="ranges">
         <div class="rg"><span>價格（萬）</span><select id="minPrice" aria-label="價格下限"><option value="">最低</option></select><i>～</i><select id="maxPrice" aria-label="價格上限"><option value="">最高</option></select></div>
         <div class="rg"><span>屋齡（年）</span><select id="minAge" aria-label="屋齡下限"><option value="">最低</option></select><i>～</i><select id="maxAge" aria-label="屋齡上限"><option value="">最高</option></select></div>
+        <div class="rg sort"><span>類型</span><select id="htype" aria-label="房屋類型"><option value="">不限</option><option value="house">透天／別墅</option><option value="bldg">大樓／華廈</option></select></div>
         <div class="rg sort"><span>排序</span><select id="sortBy" aria-label="排序"><option value="">推薦（收藏、精選在前）</option><option value="price">價格 低→高</option><option value="-price">價格 高→低</option><option value="listed">上架時間 新→舊</option><option value="added">進到 App 時間 新→舊</option></select></div>
       </div>
     </div>
@@ -371,7 +372,12 @@ RANGE_IDS.forEach(id => {
   el.value = safeGet('tainan_' + id) || ''; el.classList.toggle('on', !!el.value);
 });
 const between = (x, lo, hi) => { [lo, hi] = [lo === '' ? -Infinity : +lo, hi === '' ? Infinity : +hi].sort((a, b) => a - b); return x >= lo && x <= hi; };
-const inRange = p => between(p.price, $('#minPrice').value, $('#maxPrice').value) && between(p.age, $('#minAge').value, $('#maxAge').value);
+// 類型：properties.json 有 htype（電梯大樓／華廈／公寓）的是大樓，沒有的都是透天（雷達只收透天）
+const isBldg = p => /大樓|華廈|公寓/.test(p.htype || '');
+const htypeSel = $('#htype');
+htypeSel.value = safeGet('tainan_htype') || ''; htypeSel.classList.toggle('on', !!htypeSel.value);
+const typeOk = p => !htypeSel.value || (htypeSel.value === 'bldg') === isBldg(p);
+const inRange = p => between(p.price, $('#minPrice').value, $('#maxPrice').value) && between(p.age, $('#minAge').value, $('#maxAge').value) && typeOk(p);
 // 排序：永慶頁面沒有上架日期，用物件編號（越大越新）；樂屋網讀不到編號排最後。進 App 時間用 P 編號（每加一間 +1）
 const listedNo = p => +(p.url.match(/yungching\.com\.tw\/house\/(\d+)/) || [0, -1])[1];
 const SORTS = {price: (a, b) => a.price - b.price, '-price': (a, b) => b.price - a.price,
@@ -556,6 +562,7 @@ function card(p){
   if (t < 0) tags.push(`<span class="tag down">${icon('i-down')}<span class="num">${fmt(-t)}</span> 萬</span>`);
   if (t > 0) tags.push(`<span class="tag up">${icon('i-up')}<span class="num">${fmt(t)}</span> 萬</span>`);
   if (isStar(p)) tags.push(`<span class="tag star">${icon('i-star')}${esc(String(p.rank).replace(/^⭐\d+_/, ''))}</span>`);
+  if (isBldg(p)) tags.push(`<span class="tag">${icon('i-build')}${esc(p.htype)} ${esc((p.layout.split('｜')[1] || ''))}</span>`);
   const gyms = (p.gyms || []).length;
   const orig = first && first.price !== p.price ? `<s>${fmt(first.price)}</s>` : '';
   const off = isOff(p);
@@ -565,7 +572,7 @@ function card(p){
     <div class="c-price"><strong>${fmt(p.price)}</strong><span>萬</span>${orig}<span class="num">· ${fmt(p.unit_price)} 萬/坪</span></div>
     <div class="c-facts">
       <span title="屋齡">${icon('i-cal')}<span class="num">${fmt(p.age)}</span> 年</span>
-      <span title="建坪／地坪">${icon('i-ruler')}<span class="num">${esc((p.area_str || '').replace(/建 |地 /g, ''))}</span> 坪</span>
+      <span title="${isBldg(p) ? '權狀坪數／室內（主建物＋陽台）' : '建坪／地坪'}">${icon('i-ruler')}<span class="num">${esc((p.area_str || '').replace(/建 |地 /g, ''))}</span> 坪</span>
       <span title="500m 內道館"><svg class="i" style="width:15px;height:15px"><use href="#gymball"/></svg><span class="num">${p.gyms ? gyms : '–'}</span></span>
       <span title="土壤液化：${esc(p.liq_desc)}"><i class="lv ${p.liq_level || 'unknown'}"></i>液化</span>
       <span title="淹水：${esc(p.flood_desc)}"><i class="lv ${({low: 'low', none: 'low', med: 'med', high: 'high'})[p.flood_level] || 'unknown'}"></i>淹水</span>
@@ -657,6 +664,9 @@ $('#q').addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefa
 $('#list').addEventListener('click', e => {
   if (e.target.closest('[data-geo]')) return findPlace();
   const b = e.target.closest('[data-geo-i]'); if (b) goPlace(geo.items[+b.dataset.geoI]);
+});
+htypeSel.addEventListener('change', e => {
+  safeSet('tainan_htype', e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); fitAll();
 });
 sortSel.addEventListener('change', e => {
   safeSet('tainan_sortBy', e.target.value); e.target.classList.toggle('on', !!e.target.value); render(); $('#list').scrollTop = 0;

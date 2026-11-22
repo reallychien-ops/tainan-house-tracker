@@ -72,10 +72,10 @@ def check_yungching(url):
         raise
     if "/house/" not in final_url or "物件不存在" in html or "已下架" in flatten(html)[:3000]:
         return {"active": False}
-    m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價([\d\.]+)萬/坪", flatten(html))
+    m = re.search(r"\|\s*([\d,]+)\s*\|\s*萬\s*\|\s*單價(?:([\d\.]+)萬/坪|請洽業務)", flatten(html))  # 新大樓常寫「單價請洽業務」
     if not m:
         raise RuntimeError("永慶頁面讀不到價格")
-    return {"active": True, "price": float(m.group(1).replace(",", "")), "unit_price": float(m.group(2))}
+    return {"active": True, "price": float(m.group(1).replace(",", "")), "unit_price": float(m.group(2)) if m.group(2) else None}
 
 
 def check_rakuya(url):
