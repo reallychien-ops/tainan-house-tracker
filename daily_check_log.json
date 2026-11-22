@@ -1,5 +1,15 @@
 [
   {
+    "timestamp": "2026-11-22 09:00",
+    "checked_count": 79,
+    "new_discovered_count": 0,
+    "changes": [
+      "📉 降價 98 萬：安南區安豐三街（安順學區） 1888→1790 萬",
+      "📉 降價 100 萬：安南區安中路四段 1698→1598 萬"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-21 09:00",
     "checked_count": 76,
     "new_discovered_count": 0,
