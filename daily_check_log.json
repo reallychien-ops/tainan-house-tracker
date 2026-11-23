@@ -1,5 +1,15 @@
 [
   {
+    "timestamp": "2026-11-23 09:00",
+    "checked_count": 97,
+    "new_discovered_count": 1,
+    "changes": [
+      "❌ 已下架：麻豆區柚安路二段（『專』麻豆『近交流道』『臨12米路』優質美車墅）",
+      "🆕 新物件：台南市麻豆區柚安路二段 麻豆『近交流道』『臨12米路』優質美車墅 1398 萬（17.9 年）"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-22 09:00",
     "checked_count": 79,
     "new_discovered_count": 0,
