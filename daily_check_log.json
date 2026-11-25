@@ -1,5 +1,14 @@
 [
   {
+    "timestamp": "2026-11-25 09:00",
+    "checked_count": 97,
+    "new_discovered_count": 0,
+    "changes": [
+      "❌ 已下架：仁德區太子路（仁德太子路大面寬6.5米邊間併排雙車墅）"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-24 09:00",
     "checked_count": 97,
     "new_discovered_count": 1,
