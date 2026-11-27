@@ -1,5 +1,16 @@
 [
   {
+    "timestamp": "2026-11-27 09:00",
+    "checked_count": 95,
+    "new_discovered_count": 0,
+    "changes": [
+      "✅ 全部持平"
+    ],
+    "errors": [
+      "P69 查價失敗：永慶頁面讀不到價格"
+    ]
+  },
+  {
     "timestamp": "2026-11-26 09:00",
     "checked_count": 96,
     "new_discovered_count": 0,
