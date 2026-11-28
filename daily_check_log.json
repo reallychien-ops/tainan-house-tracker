@@ -1,5 +1,14 @@
 [
   {
+    "timestamp": "2026-11-28 09:00",
+    "checked_count": 96,
+    "new_discovered_count": 1,
+    "changes": [
+      "🆕 新物件：台南市安南區海佃路四段 6年新屋。安南海佃十二佃五房邊間雙車墅 1598 萬（6.3 年）"
+    ],
+    "errors": []
+  },
+  {
     "timestamp": "2026-11-27 09:00",
     "checked_count": 95,
     "new_discovered_count": 0,
